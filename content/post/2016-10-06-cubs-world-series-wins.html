@@ -1,0 +1,63 @@
+---
+title: "Cubs World Series Puzzles (For Fun)"
+author: "Benjamin Soltoff"
+description: "Expanding on the Riddler's Problem"
+slug: cubs-world-series-puzzles-for-fun
+date: '2016-10-06'
+categories: [r]
+tags: [r]
+---
+
+
+
+<p><a href="http://fivethirtyeight.com/features/cubs-world-series-puzzles-for-fun-and-profit/">This week’s Riddler Express from FiveThirtyEight</a>:</p>
+<blockquote>
+<p>The best team in baseball this year, the Chicago Cubs, have clinched their playoff spot and will play their first playoff game a week from today. The Cubs’ road to the World Series title consists of a best-of-five series followed by two best-of-seven series. How many unique strings of wins and losses could the Cubs assemble if they make their way through the playoffs and win their first championship title since 1908? (For example, one possible string would be WWWWWWWWWWW — three straight sweeps. Another would be WWWWWWWLLLWWWW — two sweeps plus a dramatic World Series comeback.)2</p>
+</blockquote>
+<p>A quick and dirty computational approach to calculating all the unique winning combinations.</p>
+<pre class="r"><code># get the tidyverse libraries (mainly purrr)
+library(tidyverse)</code></pre>
+<pre><code>## + ggplot2 2.2.1             Date: 2017-08-12
+## + tibble  1.3.3                R: 3.4.1
+## + tidyr   0.6.3               OS: macOS Sierra 10.12.6
+## + readr   1.1.1              GUI: X11
+## + purrr   0.2.2.2         Locale: en_US.UTF-8
+## + dplyr   0.7.2.9000          TZ: America/Chicago
+## + stringr 1.2.0           
+## + forcats 0.2.0</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────────────────</code></pre>
+<pre><code>## * filter(),  from dplyr, masks stats::filter()
+## * lag(),     from dplyr, masks stats::lag()</code></pre>
+<pre class="r"><code>set.seed(1234)
+
+# number of simulations to run
+n_sims &lt;- 10000
+
+# function to calculate sum of unique series winning combinations
+calc_win_combos &lt;- function(games = 5, n_sims = 10){
+  series_win &lt;- n_sims %&gt;%
+    rerun(sample(c(1, 0), games, replace = TRUE)) %&gt;%
+    unlist %&gt;%
+    matrix(ncol = games, byrow = TRUE) %&gt;%
+    unique %&gt;%
+    rowSums %&gt;%
+    .[] &gt;= ceiling(games / 2)
+  
+  return(sum(series_win))
+}
+
+# get total number of unique winning combos for best-of-five
+# and best-of-seven series
+wins_5 &lt;- calc_win_combos(n_sims = n_sims)
+wins_7 &lt;- calc_win_combos(games = 7, n_sims = n_sims)
+
+# multiply together (NLDS, NLCS, WS)
+wins_5 * wins_7 * wins_7</code></pre>
+<pre><code>## [1] 65536</code></pre>
+<p>There’s a lot of ways the Cubs could win the World Series. Of course, <a href="https://en.wikipedia.org/wiki/Curse_of_the_Billy_Goat">history isn’t exactly on their side</a>.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>But as a newly Chicagoan, I won’t mind hopping on the bandwagon.<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
