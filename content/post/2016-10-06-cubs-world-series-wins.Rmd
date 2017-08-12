@@ -1,7 +1,7 @@
 ---
 title: "Cubs World Series Puzzles (For Fun)"
 author: "Benjamin Soltoff"
-description: "Expanding on the Riddler's Problem"
+summary: "Expanding on the Riddler's Problem"
 slug: cubs-world-series-puzzles-for-fun
 date: '2016-10-06'
 categories: [r]
