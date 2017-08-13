@@ -70,5 +70,199 @@ wins_5 * wins_7 * wins_7&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
+    <item>
+      <title>A Modified Draft Pick Selection Order</title>
+      <link>http://www.bensoltoff.com/test-hugo/post/expected-draft-pick/</link>
+      <pubDate>Tue, 20 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.bensoltoff.com/test-hugo/post/expected-draft-pick/</guid>
+      <description>&lt;p&gt;In preparation for teaching a &lt;a href=&#34;https://uc-cfss.github.io&#34;&gt;new computing course for the social sciences&lt;/a&gt;, I’ve been practicing building interactive websites using &lt;a href=&#34;http://shiny.rstudio.com/&#34;&gt;Shiny&lt;/a&gt; for R. The &lt;a href=&#34;http://fivethirtyeight.com/features/how-high-can-count-von-count-count/&#34;&gt;latest Riddler puzzle from FiveThirtyEight&lt;/a&gt; was an especially interesting challenge, combining aspects of computational simulation and Shiny programing:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You are one of 30 team owners in a professional sports league. In the past, your league set the order for its annual draft using the teams’ records from the previous season — the team with the worst record got the first draft pick, the team with the second-worst record got the next pick, and so on. However, due to concerns about teams intentionally losing games to improve their picks, the league adopts a modified system. This year, each team tosses a coin. All the teams that call their coin toss correctly go into Group A, and the teams that lost the toss go into Group B. All the Group A teams pick before all the Group B teams; within each group, picks are ordered in the traditional way, from worst record to best. If your team would have picked 10th in the old system, what is your expected draft position under the new system?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Extra credit: Suppose each team is randomly assigned to one of T groups where all the teams in Group 1 pick, then all the teams in Group 2, and so on. (The coin-flipping scenario above is the case where T = 2.) What is the expected draft position of the team with the Nth-best record?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;One could go the analytical route to solve this&lt;/p&gt;
+&lt;blockquote class=&#34;twitter-tweet&#34; data-conversation=&#34;none&#34; data-lang=&#34;en&#34;&gt;
+&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;
+I think I worked out the analytic solution… &lt;a href=&#34;https://t.co/HNus4TIZEJ&#34;&gt;pic.twitter.com/HNus4TIZEJ&lt;/a&gt;
+&lt;/p&gt;
+— Russell Maier (&lt;span class=&#34;citation&#34;&gt;@MaierRussell&lt;/span&gt;) &lt;a href=&#34;https://twitter.com/MaierRussell/status/778056486593454080&#34;&gt;September 20, 2016&lt;/a&gt;
+&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
+&lt;p&gt;But I wanted to take a computational, brute-force approach. This type of problem is ripe for Markov chain Monte Carlo (MCMC) methods, which I’ve use before in &lt;a href=&#34;http://www.bensoltoff.com/r/can-you-win-this-hot-new-game-show/&#34;&gt;Riddler solutions&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The main task is to write a function that calculates the new draft position for a team given their current draft pick and potential assignment into one of &lt;span class=&#34;math inline&#34;&gt;\(K\)&lt;/span&gt; groups. The function I wrote is:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## + ggplot2 2.2.1             Date: 2017-08-13
+## + tibble  1.3.3                R: 3.4.1
+## + tidyr   0.6.3               OS: macOS Sierra 10.12.6
+## + readr   1.1.1              GUI: X11
+## + purrr   0.2.2.2         Locale: en_US.UTF-8
+## + dplyr   0.7.2.9000          TZ: America/Chicago
+## + stringr 1.2.0           
+## + forcats 0.2.0&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## ── Conflicts ────────────────────────────────────────────────────&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## * filter(),  from dplyr, masks stats::filter()
+## * lag(),     from dplyr, masks stats::lag()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(1234)
+
+draft_pick_sim &amp;lt;- function(n_teams = 30, n_groups = 2, n_sims = 100){
+  old &amp;lt;- 1:n_teams
+
+  sims &amp;lt;- replicate(n_sims, sample(1:n_groups, n_teams, replace = T)) %&amp;gt;%
+    tbl_df %&amp;gt;%
+    bind_cols(data_frame(old)) %&amp;gt;%
+    gather(sim, outcome, -old) %&amp;gt;%
+    group_by(sim) %&amp;gt;%
+    arrange(sim, outcome, old) %&amp;gt;%
+    mutate(new = row_number())
+  
+  return(sims)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;For each simulation, I randomly sample each team into one of &lt;code&gt;n_groups&lt;/code&gt;, then calculate draft order from worst-to-first within each group and then between groups. From this I can then calculate the expected draft position for each team given their original draft order.&lt;/p&gt;
+&lt;p&gt;So given the original problem setup, the expected draft positions for each team given random assignment into one of two groups is:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;draft_pick_sim(n_sims = 10000) %&amp;gt;%
+  group_by(old) %&amp;gt;%
+  summarize(mean = mean(new)) %&amp;gt;%
+  knitr::kable(caption = &amp;quot;Expected Draft Position (based on 10,000 simulations)&amp;quot;,
+               col.names = c(&amp;quot;Original Draft Position&amp;quot;,
+                             &amp;quot;Expected Draft Position&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;caption&gt;&lt;span id=&#34;tab:unnamed-chunk-2&#34;&gt;Table 1: &lt;/span&gt;Expected Draft Position (based on 10,000 simulations)&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;right&#34;&gt;Original Draft Position&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;Expected Draft Position&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;8.18&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;8.77&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;9.27&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;9.76&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10.25&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;10.80&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;7&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11.39&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;8&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;11.74&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;9&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12.20&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;10&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;12.79&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;11&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;13.26&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;12&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;13.68&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;13&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;14.29&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;14&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;14.64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;15&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;15.40&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;16&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;15.71&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;17&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;16.28&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;18&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;16.63&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;19&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;17.23&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;20&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;17.86&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;21&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;18.14&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;22&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;18.72&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;23&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;19.31&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;24&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;19.77&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;25&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;20.28&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;26&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;20.84&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;27&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;21.24&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;28&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;21.66&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;29&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;22.34&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;30&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;22.56&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The team originally with the 10th draft can expect to have the &lt;em&gt;13th pick&lt;/em&gt; under this new approach.&lt;/p&gt;
+&lt;p&gt;What turned into the more complicated part was turning this function into a working Shiny app. &lt;a href=&#34;https://bensoltoff.shinyapps.io/draft_pick/&#34;&gt;I encourage you to try it out&lt;/a&gt;, as it generalizes the problem by providing expected draft picks given &lt;em&gt;N&lt;/em&gt; teams and &lt;em&gt;K&lt;/em&gt; groups.&lt;/p&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>
