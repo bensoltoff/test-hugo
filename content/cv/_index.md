@@ -31,8 +31,8 @@ Chicago, IL 60637                 |
 
 # Employment
 
-* University of Chicago, [Masters in Computational Social Science](https://macss.uchicago.edu/), Lecturer (2016-present)
-* Miami University, [Department of Political Science](http://miamioh.edu/cas/academics/departments/political-science/index.html), Visiting Assistant Professor (2015-2016)
+* Lecturer, University of Chicago, [Masters in Computational Social Science](https://macss.uchicago.edu/) (2016-present)
+* Visiting Assistant Professor, Miami University, [Department of Political Science](http://miamioh.edu/cas/academics/departments/political-science/index.html) (2015-2016)
 
 # Teaching
 
@@ -40,11 +40,11 @@ Chicago, IL 60637                 |
 
 ### Computational Social Science
 
-* MACS 30000: Perspectives on Computational Analysis, with Rick Evans ([Autumn 2016](https://github.com/UC-MACSS/persp-analysis))
-* MACS 30100: Perspectives on Computational Modeling, with Rick Evans ([Winter 2017](https://github.com/UC-MACSS/persp-model))
-* MACS 30200: Perspectives on Advanced Computational Topics, with Rick Evans (Spring 2017)
-* MACS 30500: Computing for the Social Sciences ([Autumn 2016](http://cfss.uchicago.edu/fall2016/); [Winter 2017](http://cfss.uchicago.edu))
-* MACS 40700: Data Visualization (Spring 2017)
+* [MACS 30000: Perspectives on Computational Analysis](https://github.com/UC-MACSS/persp-analysis) (Autumn 2016 with Rick Evans, Autumn 2017)
+* [MACS 30100: Perspectives on Computational Modeling](https://github.com/UC-MACSS/persp-model) (Winter 2017 with Rick Evans)
+* [MACS 30200: Perspectives on Computational Research](https://github.com/UC-MACSS/persp-research) (Spring 2017 with Rick Evans)
+* [MACS 30500: Computing for the Social Sciences](http://cfss.uchicago.edu) (Autumn 2016, Winter 2017, Autumn 2017)
+* [MACS 40700: Data Visualization](https://github.com/uc-cfss/dataviz) (Spring 2017)
 * PL SC 309: Quantitative Political Analysis ([Spring 2015](https://drive.google.com/file/d/0ByLziL7vt0rqRHR5X3dCVldWQ2s/view?usp=sharing))
 
 ### American Politics
@@ -71,6 +71,7 @@ Chicago, IL 60637                 |
 * [Penn State Graduate School Teaching Certificate](http://www.gradschool.psu.edu/index.cfm/current-students/tacert/)
   * [Schreyer Institute -- New Instructor Orientation](http://www.schreyerinstitute.psu.edu/Events/NIO/)
   * [Schreyer Institute -- Penn State Course in College Teaching](http://www.schreyerinstitute.psu.edu/Events/CCT/)
+* [Data Carpentry instructor training course](http://www.datacarpentry.org/for-instructors/)
 
 # Research
 
@@ -81,7 +82,7 @@ Chicago, IL 60637                 |
 ## Working Papers
 
 * Campaign Contributions and Judicial Decisionmaking: Does Money Buy Access?
-* Campaign Contributions and Judicial Decisionmaking in Elected and Appointed Judiciaries (with Jeremy Johnson)
+* Campaign Contributions and Judicial Decisionmaking in Elected and Appointed Judiciaries
 * The Effect of Institutional Procedures on Agenda-Setting in State Courts of Last Resort
 * (How) Is Justice For Sale? Campaign Contributions and State Supreme Court Decisions
   * Winner, Outstanding Poster, 2014 State Politics and Policy Conference
@@ -149,6 +150,12 @@ Chicago, IL 60637                 |
 * Travel Grant for presentation at MPSA, Department of Political Science, Penn State University, 2012 ($700)
 * James Madison University Honor's Program small grant to attend Sorensen Institute for Political Leadership, College Leaders Program, 2009 ($200)
 * "Best Political Science Senior Honors Thesis," James Madison University, 2010
+
+# Advising
+
+* Master's paper advisor
+    * Yanning Cui (2017)
+    * Bobae Kang (2017)
 
 # Service to the Profession
 
