@@ -81,30 +81,43 @@ wins_5 * wins_7 * wins_7&lt;/code&gt;&lt;/pre&gt;
     </item>
     
     <item>
-      <title>Deep Learning</title>
-      <link>http://www.bensoltoff.com/test-hugo/project/deep-learning/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <title>Agenda-Setting in State Supreme Courts</title>
+      <link>http://www.bensoltoff.com/test-hugo/project/state-courts-agenda-setting/</link>
+      <pubDate>Sat, 13 Aug 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.bensoltoff.com/test-hugo/project/deep-learning/</guid>
-      <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
-
-&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
-
-&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
-
-&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
-
-&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+      <guid>http://www.bensoltoff.com/test-hugo/project/state-courts-agenda-setting/</guid>
+      <description>&lt;p&gt;Much of the research on judicial agenda-setting has focused on individual behavior within the confines of the U.S. Supreme Court. This precludes the possibility of accounting for how institutional structure shapes a court&amp;rsquo;s attention as the Court&amp;rsquo;s formal procedures have not changed significantly in the past 80 years. In my dissertation I develop a generalizable model of judicial agenda-setting which views judges and litigants as rational actors interacting within a specific institutional structure. I empirically test several hypotheses derived from this model on state supreme courts. Enabled by an NSF Doctoral Dissertation Research Improvement Grant, I utilized advanced computational processes and machine learning approaches to measure the policy attention and procedural path of 60,000+ cases heard by state supreme courts over a ten-year period, as well as discretionary cases which were rejected by a sample of states without a decision on the merits. These measures are combined with knowledge on the institutional structure of each state supreme court to evaluate several hypotheses at the macro- and micro-levels: that institutional barriers and ideological fractionalization of the court lead to fewer policy decisions; that judges engage in sincere, not sophisticated, agenda-setting; and that campaign contributions by a litigant or her attorney to a state supreme court justice increase the probability of the judge voting to grant review. To facilitate this research, I utilize several computational approaches to analyzing large datasets including machine classification and textual analysis.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>External Project</title>
-      <link>http://www.bensoltoff.com/test-hugo/project/example-external-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <title>Campaign Financing in State Supreme Courts</title>
+      <link>http://www.bensoltoff.com/test-hugo/project/state-court-financing/</link>
+      <pubDate>Sat, 13 Aug 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.bensoltoff.com/test-hugo/project/example-external-project/</guid>
-      <description></description>
+      <guid>http://www.bensoltoff.com/test-hugo/project/state-court-financing/</guid>
+      <description>&lt;p&gt;The ongoing debate within the academic and legal communities over the propriety of judicial elections provides an excellent opportunity to utilize empirical research to address a normative debate. One of the key concerns expressed by judicial reformists is the influence of money and campaign contributors on judges and state supreme courts, yet we know relatively little about why individuals decide to contribute to judicial candidates and how specifically this alters judicial behavior. Using an automated approach to match contributions to individual judicial decisions, I have collected data to test a theoretical model of judicial campaign contributors; do individuals spend money to influence electoral outcomes, improve the probability of success in their own litigation, obtain access to the appellate courts, or a combination of these factors? I have begun to evaluate these competing theories in a paper on judicial decisionmaking in business cases, which received the Outstanding Poster Award at the 2014 State Politics meeting. In another paper, I extend this dataset to determine to what degree appointed judges exercise independence from those responsible for their selection to office relative to elected judges. While previously scholars have assumed appointment systems lead to an insulated judiciary, I empirically evaluate this assumption in states with fixed-term appointments.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Elections, Campaign Financing, and the Criminal Justice System</title>
+      <link>http://www.bensoltoff.com/test-hugo/project/judicial-elections-criminal-justice/</link>
+      <pubDate>Sat, 13 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.bensoltoff.com/test-hugo/project/judicial-elections-criminal-justice/</guid>
+      <description>&lt;p&gt;In the United States the government strives to implement a fair and impartial justice system, yet many states hold district attorneys and trial court judges directly accountable through public elections. The usage of elections raises questions surrounding prosecutorial responsiveness to public opinion, the independence and accountability of judges, and the influence of money in determining the outcomes of elections and the decisions made by prosecutors and judges. Do elections facilitate the implementation of an impartial system of justice, or do they introduce systematic biases? This project leverages data on campaign contributions, electoral outcomes, and criminal sentencing decisions to assess how money and politics influence criminal justice in the United States. These are all questions which I seek to answer through the use of massive data.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>U.S. Supreme Court and Mandatory Jurisdiction</title>
+      <link>http://www.bensoltoff.com/test-hugo/project/scotus-mandatory-jurisdiction/</link>
+      <pubDate>Sat, 13 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.bensoltoff.com/test-hugo/project/scotus-mandatory-jurisdiction/</guid>
+      <description>&lt;p&gt;Scholars have long understood that the process by which the U.S. Supreme Court sets its agenda has important implications for its ability to shape policy at the national level. Since 1925, however, nearly all of its cases have come to the Court under the same rules regarding the Court&amp;rsquo;s discretionary jurisdiction. This lack of institutional variation makes inferences about the influence of the Court&amp;rsquo;s agenda-setting process on its subsequent decisions difficult. An important exception, however, are cases arising under the Court&amp;rsquo;s mandatory jurisdiction. In a project with Christopher Zorn, we leverage more than six decades of the Court&amp;rsquo;s decisions using a matched case design to evaluate how the Court&amp;rsquo;s agenda-setting process shapes a host of Court behavior: votes on the merits, aggregate outcomes, opinion writing, and concurring and dissenting behavior.&lt;/p&gt;
+</description>
     </item>
     
     <item>

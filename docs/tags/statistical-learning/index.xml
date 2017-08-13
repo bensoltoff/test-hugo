@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Projects on Straight Up Soltoff</title>
-    <link>http://www.bensoltoff.com/test-hugo/project/</link>
-    <description>Recent content in Projects on Straight Up Soltoff</description>
+    <title>Statistical Learning on Straight Up Soltoff</title>
+    <link>http://www.bensoltoff.com/test-hugo/tags/statistical-learning/</link>
+    <description>Recent content in Statistical Learning on Straight Up Soltoff</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017 Benjamin Soltoff</copyright>
     <lastBuildDate>Sat, 13 Aug 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/test-hugo/project/" rel="self" type="application/rss+xml" />
+    <atom:link href="/test-hugo/tags/statistical-learning/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Agenda-Setting in State Supreme Courts</title>

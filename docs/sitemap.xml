@@ -59,8 +59,8 @@
     
     <url>
     
-      <loc>http://www.bensoltoff.com/test-hugo/project/deep-learning/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
+      <loc>http://www.bensoltoff.com/test-hugo/project/state-courts-agenda-setting/</loc>
+      <lastmod>2016-08-13T00:00:00+00:00</lastmod>
     </url>
     
   
@@ -68,8 +68,26 @@
     
     <url>
     
-      <loc>http://www.bensoltoff.com/test-hugo/project/example-external-project/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
+      <loc>http://www.bensoltoff.com/test-hugo/project/state-court-financing/</loc>
+      <lastmod>2016-08-13T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>http://www.bensoltoff.com/test-hugo/project/judicial-elections-criminal-justice/</loc>
+      <lastmod>2016-08-13T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>http://www.bensoltoff.com/test-hugo/project/scotus-mandatory-jurisdiction/</loc>
+      <lastmod>2016-08-13T00:00:00+00:00</lastmod>
     </url>
     
   
@@ -178,6 +196,26 @@
     
     <url>
     
+      <loc>http://www.bensoltoff.com/test-hugo/tags/agenda-setting/</loc>
+      <lastmod>2016-08-13T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>http://www.bensoltoff.com/test-hugo/tags/big-data/</loc>
+      <lastmod>2016-08-13T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>http://www.bensoltoff.com/test-hugo/categories/</loc>
       <priority>0</priority>
     </url>
@@ -196,26 +234,6 @@
     <url>
     
       <loc>http://www.bensoltoff.com/test-hugo/tags/cv/</loc>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>http://www.bensoltoff.com/test-hugo/tags/deep-learning/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>http://www.bensoltoff.com/test-hugo/tags/demo/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -244,6 +262,16 @@
     
     <url>
     
+      <loc>http://www.bensoltoff.com/test-hugo/tags/judicial-elections/</loc>
+      <lastmod>2016-08-13T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>http://www.bensoltoff.com/test-hugo/tags/plot/</loc>
       <lastmod>2015-07-23T21:13:14-05:00</lastmod>
       <priority>0</priority>
@@ -255,7 +283,7 @@
     <url>
     
       <loc>http://www.bensoltoff.com/test-hugo/project/</loc>
-      <lastmod>2016-04-27T00:00:00+00:00</lastmod>
+      <lastmod>2016-08-13T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -274,7 +302,7 @@
     
     <url>
     
-      <loc>http://www.bensoltoff.com/test-hugo/categories/r/</loc>
+      <loc>http://www.bensoltoff.com/test-hugo/tags/r/</loc>
       <lastmod>2016-10-06T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -284,7 +312,7 @@
     
     <url>
     
-      <loc>http://www.bensoltoff.com/test-hugo/tags/r/</loc>
+      <loc>http://www.bensoltoff.com/test-hugo/categories/r/</loc>
       <lastmod>2016-10-06T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -304,8 +332,48 @@
     
     <url>
     
+      <loc>http://www.bensoltoff.com/test-hugo/tags/record-linkage/</loc>
+      <lastmod>2016-08-13T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>http://www.bensoltoff.com/test-hugo/tags/regression/</loc>
       <lastmod>2015-07-23T21:13:14-05:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>http://www.bensoltoff.com/test-hugo/tags/state-courts/</loc>
+      <lastmod>2016-08-13T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>http://www.bensoltoff.com/test-hugo/tags/state-supreme-courts/</loc>
+      <lastmod>2016-08-13T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>http://www.bensoltoff.com/test-hugo/tags/statistical-learning/</loc>
+      <lastmod>2016-08-13T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -324,8 +392,28 @@
     
     <url>
     
+      <loc>http://www.bensoltoff.com/test-hugo/tags/supreme-court/</loc>
+      <lastmod>2016-08-13T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>http://www.bensoltoff.com/test-hugo/tags/</loc>
       <lastmod>2017-01-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>http://www.bensoltoff.com/test-hugo/tags/trial-courts/</loc>
+      <lastmod>2016-08-13T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

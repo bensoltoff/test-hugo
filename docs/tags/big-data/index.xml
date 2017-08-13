@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Big Data on Straight Up Soltoff</title>
+    <link>http://www.bensoltoff.com/test-hugo/tags/big-data/</link>
+    <description>Recent content in Big Data on Straight Up Soltoff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017 Benjamin Soltoff</copyright>
+    <lastBuildDate>Sat, 13 Aug 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/test-hugo/tags/big-data/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Elections, Campaign Financing, and the Criminal Justice System</title>
+      <link>http://www.bensoltoff.com/test-hugo/project/judicial-elections-criminal-justice/</link>
+      <pubDate>Sat, 13 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.bensoltoff.com/test-hugo/project/judicial-elections-criminal-justice/</guid>
+      <description>&lt;p&gt;In the United States the government strives to implement a fair and impartial justice system, yet many states hold district attorneys and trial court judges directly accountable through public elections. The usage of elections raises questions surrounding prosecutorial responsiveness to public opinion, the independence and accountability of judges, and the influence of money in determining the outcomes of elections and the decisions made by prosecutors and judges. Do elections facilitate the implementation of an impartial system of justice, or do they introduce systematic biases? This project leverages data on campaign contributions, electoral outcomes, and criminal sentencing decisions to assess how money and politics influence criminal justice in the United States. These are all questions which I seek to answer through the use of massive data.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

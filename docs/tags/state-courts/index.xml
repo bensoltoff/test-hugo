@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>State Courts on Straight Up Soltoff</title>
+    <link>http://www.bensoltoff.com/test-hugo/tags/state-courts/</link>
+    <description>Recent content in State Courts on Straight Up Soltoff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017 Benjamin Soltoff</copyright>
+    <lastBuildDate>Sat, 13 Aug 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/test-hugo/tags/state-courts/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Agenda-Setting in State Supreme Courts</title>
+      <link>http://www.bensoltoff.com/test-hugo/project/state-courts-agenda-setting/</link>
+      <pubDate>Sat, 13 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.bensoltoff.com/test-hugo/project/state-courts-agenda-setting/</guid>
+      <description>&lt;p&gt;Much of the research on judicial agenda-setting has focused on individual behavior within the confines of the U.S. Supreme Court. This precludes the possibility of accounting for how institutional structure shapes a court&amp;rsquo;s attention as the Court&amp;rsquo;s formal procedures have not changed significantly in the past 80 years. In my dissertation I develop a generalizable model of judicial agenda-setting which views judges and litigants as rational actors interacting within a specific institutional structure. I empirically test several hypotheses derived from this model on state supreme courts. Enabled by an NSF Doctoral Dissertation Research Improvement Grant, I utilized advanced computational processes and machine learning approaches to measure the policy attention and procedural path of 60,000+ cases heard by state supreme courts over a ten-year period, as well as discretionary cases which were rejected by a sample of states without a decision on the merits. These measures are combined with knowledge on the institutional structure of each state supreme court to evaluate several hypotheses at the macro- and micro-levels: that institutional barriers and ideological fractionalization of the court lead to fewer policy decisions; that judges engage in sincere, not sophisticated, agenda-setting; and that campaign contributions by a litigant or her attorney to a state supreme court justice increase the probability of the judge voting to grant review. To facilitate this research, I utilize several computational approaches to analyzing large datasets including machine classification and textual analysis.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

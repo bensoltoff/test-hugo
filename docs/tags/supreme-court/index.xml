@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Supreme Court on Straight Up Soltoff</title>
+    <link>http://www.bensoltoff.com/test-hugo/tags/supreme-court/</link>
+    <description>Recent content in Supreme Court on Straight Up Soltoff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017 Benjamin Soltoff</copyright>
+    <lastBuildDate>Sat, 13 Aug 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/test-hugo/tags/supreme-court/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>U.S. Supreme Court and Mandatory Jurisdiction</title>
+      <link>http://www.bensoltoff.com/test-hugo/project/scotus-mandatory-jurisdiction/</link>
+      <pubDate>Sat, 13 Aug 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.bensoltoff.com/test-hugo/project/scotus-mandatory-jurisdiction/</guid>
+      <description>&lt;p&gt;Scholars have long understood that the process by which the U.S. Supreme Court sets its agenda has important implications for its ability to shape policy at the national level. Since 1925, however, nearly all of its cases have come to the Court under the same rules regarding the Court&amp;rsquo;s discretionary jurisdiction. This lack of institutional variation makes inferences about the influence of the Court&amp;rsquo;s agenda-setting process on its subsequent decisions difficult. An important exception, however, are cases arising under the Court&amp;rsquo;s mandatory jurisdiction. In a project with Christopher Zorn, we leverage more than six decades of the Court&amp;rsquo;s decisions using a matched case design to evaluate how the Court&amp;rsquo;s agenda-setting process shapes a host of Court behavior: votes on the merits, aggregate outcomes, opinion writing, and concurring and dissenting behavior.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
