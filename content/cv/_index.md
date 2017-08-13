@@ -42,10 +42,10 @@ math = false
 
 ### Computational Social Science
 
-* [MACS 30000: Perspectives on Computational Analysis](https://github.com/UC-MACSS/persp-analysis) (Autumn 2016 with Rick Evans, Autumn 2017)
+* [MACS 30000: Perspectives on Computational Analysis](https://github.com/UC-MACSS/persp-analysis) (Autumn 2016 with Rick Evans; Autumn 2017)
 * [MACS 30100: Perspectives on Computational Modeling](https://github.com/UC-MACSS/persp-model) (Winter 2017 with Rick Evans)
 * [MACS 30200: Perspectives on Computational Research](https://github.com/UC-MACSS/persp-research) (Spring 2017 with Rick Evans)
-* [MACS 30500: Computing for the Social Sciences](http://cfss.uchicago.edu) (Autumn 2016, Winter 2017, Autumn 2017)
+* [MACS 30500: Computing for the Social Sciences](http://cfss.uchicago.edu) (Autumn 2016; Winter 2017; Autumn 2017)
 * [MACS 40700: Data Visualization](https://github.com/uc-cfss/dataviz) (Spring 2017)
 * PL SC 309: Quantitative Political Analysis ([Spring 2015](https://drive.google.com/file/d/0ByLziL7vt0rqRHR5X3dCVldWQ2s/view?usp=sharing))
 
