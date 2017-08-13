@@ -16,12 +16,14 @@ math = false
 
 +++
 
-Benjamin C. Soltoff               |  
-----------------------------------|-------------------------------------------------
-Social Sciences Division          | Phone: (773) 702-9360
-University of Chicago             | Office: 249 Saieh Hall
-5730 S. Woodlawn Ave              | [ben@bensoltoff.com](mailto:ben@bensoltoff.com)
-Chicago, IL 60637                 |    
+# Benjamin C. Soltoff
+
+|              |  |
+|----------------------------------|-------------------------------------------------|
+|Social Sciences Division          | Phone: (773) 702-9360 |
+|University of Chicago             | Office: 249 Saieh Hall |
+|5730 S. Woodlawn Ave              | [ben@bensoltoff.com](mailto:ben@bensoltoff.com) |
+|Chicago, IL 60637                 |    |
 
 # Education
 
