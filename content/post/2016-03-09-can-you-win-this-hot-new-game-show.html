@@ -1,0 +1,158 @@
+---
+layout: post
+title: "Can You Win This Hot New Game Show?"
+description: "Expanding on the Riddler's Problem"
+slug: can-you-win-this-hot-new-game-show
+date: 2016-03-09 12:00:00 -0500
+category: r
+tags: [r]
+comments: true
+---
+
+
+
+<p>So the latest <a href="http://fivethirtyeight.com/features/can-you-win-this-hot-new-game-show/">Riddler puzzle on FiveThirtyEight</a> goes like this:</p>
+<blockquote>
+<p>Two players go on a hot new game show called “Higher Number Wins.” The two go into separate booths, and each presses a button, and a random number between zero and one appears on a screen. (At this point, neither knows the other’s number, but they do know the numbers are chosen from a standard uniform distribution.) They can choose to keep that first number, or to press the button again to discard the first number and get a second random number, which they must keep. Then, they come out of their booths and see the final number for each player on the wall. The lavish grand prize — a case full of gold bullion — is awarded to the player who kept the higher number. Which number is the optimal cutoff for players to discard their first number and choose another? Put another way, within which range should they choose to keep the first number, and within which range should they reject it and try their luck with a second number?</p>
+</blockquote>
+<p>My initial thought was to try and solve this problem via simulation. The following code will generate 100,000 rounds of play between two players. For the sake of efficiency, we will draw twice for each player now and consider how the selection of the first or second number influences the outcome of the game.</p>
+<pre class="r"><code>require(dplyr)
+require(magrittr)
+require(ggplot2)
+
+set.seed(938747)
+
+# number of rounds to play
+n_draw &lt;- 100000</code></pre>
+<pre class="r"><code>p1 &lt;- cbind(runif(n_draw), runif(n_draw))
+p2 &lt;- cbind(runif(n_draw), runif(n_draw))
+
+head(p1)</code></pre>
+<pre><code>##        [,1]    [,2]
+## [1,] 0.5322 0.05078
+## [2,] 0.8662 0.60570
+## [3,] 0.1850 0.21139
+## [4,] 0.1196 0.26063
+## [5,] 0.8719 0.47793
+## [6,] 0.2358 0.38871</code></pre>
+<pre class="r"><code>head(p2)</code></pre>
+<pre><code>##        [,1]   [,2]
+## [1,] 0.8189 0.7178
+## [2,] 0.4383 0.2433
+## [3,] 0.6300 0.5607
+## [4,] 0.7649 0.4286
+## [5,] 0.8377 0.3405
+## [6,] 0.4543 0.7741</code></pre>
+<div id="naive-players" class="section level2">
+<h2>Naive Players</h2>
+<p>The key thing to realize is that if the players adopt the same strategy, each player will always have a 50% chance of victory. Let’s consider a very simple strategy first: no matter what happens, always keep the first number. After all, the number is generated randomly so there is no guarantee that the second number will be larger than the first number. How well does player 1 do if both players employ this strategy?</p>
+<pre class="r"><code>sum(p1[,1] &gt; p2[,1]) / n_draw</code></pre>
+<pre><code>## [1] 0.4985</code></pre>
+<p>With this strategy, each player has a roughly 50% chance of winning the game. We can also see this is the same if each player always takes the second number.</p>
+<pre class="r"><code>sum(p1[,2] &gt; p2[,2]) / n_draw</code></pre>
+<pre><code>## [1] 0.5031</code></pre>
+<p>Okay, so this strategy is a bit naive. Why not be more sophisticated? Perhaps instead, players will only take the second number if their first number is low. An arbitrary cutpoint might be .5. That is, if either player gets a number less than .5 in the first draw, they will take whatever they get in the second draw. How does this strategy work? Here I write a short function to select the appropriate value from each round based on a specified cutpoint.</p>
+<pre class="r"><code>cutoff &lt;- function(draw, cutpoint = .5){
+  ifelse(draw[, 1] &lt; cutpoint, draw[, 2], draw[, 1])
+}
+
+sum(cutoff(p1) &gt; cutoff(p2)) / n_draw</code></pre>
+<pre><code>## [1] 0.4994</code></pre>
+<p>Because each player chose a cutpoint of .5, their probability of winning is still 50%.</p>
+<p>This applies to all cutpoints, as long as both players select the same cutpoint.</p>
+<pre class="r"><code>cutpoints &lt;- seq(0, 1, by = .01)
+results &lt;- lapply(cutpoints,
+                  function(cutpoint) sum(cutoff(p1, cutpoint = cutpoint) &gt;
+                                           cutoff(p2, cutpoint = cutpoint))) %&gt;%
+  unlist
+
+results_full &lt;- data_frame(cutpoint = cutpoints,
+                           win = results,
+                           win_prop = win / n_draw)
+results_full</code></pre>
+<pre><code>## # A tibble: 101 x 3
+##    cutpoint   win win_prop
+##       &lt;dbl&gt; &lt;int&gt;    &lt;dbl&gt;
+##  1     0.00 49849   0.4985
+##  2     0.01 49846   0.4985
+##  3     0.02 49897   0.4990
+##  4     0.03 49896   0.4990
+##  5     0.04 49923   0.4992
+##  6     0.05 49930   0.4993
+##  7     0.06 49959   0.4996
+##  8     0.07 49965   0.4996
+##  9     0.08 50011   0.5001
+## 10     0.09 50051   0.5005
+## # ... with 91 more rows</code></pre>
+<pre class="r"><code>ggplot(results_full, aes(cutpoint, win_prop)) +
+  geom_line() +
+  scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
+  labs(x = &quot;Cutpoint&quot;,
+       y = &quot;Player 1 Win Percentage&quot;) +
+  theme_bw(base_size = 16)</code></pre>
+<p><img src="/"http://www.bensoltoff.com/test-hugo/"  # End your URL with a `/` trailing slash.post/2016-03-09-can-you-win-this-hot-new-game-show_files/figure-html/cut_plot-1.png" width="672" /></p>
+</div>
+<div id="strategic-players" class="section level2">
+<h2>Strategic Players</h2>
+<p>Okay, so the issue with this analysis thus far is that this assumes the same strategies by both players. What would happen if two players do not use the same cutpoint? After all, the players cannot communicate with one another so there is no reason to expect that they would choose the same cutpoint. Let’s consider what happens if player 1 takes the second number if her first number is less than .5, but player 2 only takes the second number if his first number is less than .9.</p>
+<pre class="r"><code>cutoff_2 &lt;- function(p1, p2, cut1 = .5, cut2 = .5){
+  sum(cutoff(p1, cutpoint = cut1) &gt; cutoff(p2, cutpoint = cut2))
+}
+
+cutoff_2(p1, p2, cut1 = .5, cut2 = .9) / n_draw</code></pre>
+<pre><code>## [1] 0.5713</code></pre>
+<p>Hmm, now we’re on to something. Player 1 wins 57% of the rounds. But what if Player 2 knows this and adjusts his cutpoint? And Player 1, expecting this, adjusts her’s? Essentially, we want to determine the equilibrium strategy for this game.</p>
+<div id="analytical-solution" class="section level3">
+<h3>Analytical Solution</h3>
+<p>So full disclosure: I didn’t do the math on this one. md46135 did the calculus and the full explanation can be found <a href="http://forumserver.twoplustwo.com/25/probability/riddler-1594214/#post49516577">here</a>. The full probability equation is as follows (here, player 1 is named <strong>hero</strong> and player 2 is named <strong>villain</strong>):</p>
+<p><a href="https://www.wolframalpha.com/input/?i=(h*v)%2F2+%2B+v*(v+-+1)+-+v%5E2%2F2+%2B+h*(v*(h+-+1)+-+h%5E2%2F2+%2B+1%2F2)+-+(v*(h%5E2+-+1))%2F2+%2B+1%2F2"><span class="math display">\[\Pr(H = 1) = - \frac{1}{2}(h^2 - 1)v + h \left( - \frac{h^2}{2} + (h - 1)v + \frac{1}{2} \right) + \frac{hv}{2} - \frac{v^2}{2} + (v - 1) v + \frac{1}{2}\]</span></a></p>
+<p>This is the joint probability of victory for player 1 (or the hero) given four potential states: hero and villain both keep their first numbers, hero keeps her first and villian keeps his second, hero keeps her second and villain keeps his first, and both hero and villain keep their second numbers. In order to calculate the equilibrium strategy for both players, calculate the partial derivatives with respect to <em>h</em> and <em>v</em>:</p>
+<p><a href="https://www.wolframalpha.com/input/?i=(h*v)%2F2+%2B+v*(v+-+1)+-+v%5E2%2F2+%2B+h*(v*(h+-+1)+-+h%5E2%2F2+%2B+1%2F2)+-+(v*(h%5E2+-+1))%2F2+%2B+1%2F2+partial+derivative+with+respect+to+h"><span class="math display">\[\frac{\partial \Pr(H = 1)}{\partial h} = \frac{1}{2} (-3h^2 + 2hv -v + 1)\]</span></a></p>
+<p><a href="https://www.wolframalpha.com/input/?i=(h*v)%2F2+%2B+v*(v+-+1)+-+v%5E2%2F2+%2B+h*(v*(h+-+1)+-+h%5E2%2F2+%2B+1%2F2)+-+(v*(h%5E2+-+1))%2F2+%2B+1%2F2+partial+derivative+with+respect+to+v"><span class="math display">\[\frac{\partial \Pr(H = 1)}{\partial v} = \frac{1}{2} (h^2 - h + 2v - 1)\]</span></a></p>
+<p>Then set each derivative equal to 0, and solve for the appropriate values of <em>h</em> and <em>v</em>.</p>
+<p><a href="https://www.wolframalpha.com/input/?i=v%2F2+-+h*v+-+h*(h+-+v)+%2B+v*(h+-+1)+-+h%5E2%2F2+%2B+1%2F2%3D0,++h%2F2+%2B+v+%2B+h*(h+-+1)+-+h%5E2%2F2+-+1%2F2%3D0"><span class="math display">\[h = \frac{\sqrt{5}}{2} - \frac{1}{2}, v = \frac{\sqrt{5}}{2} - \frac{1}{2} \]</span></a></p>
+</div>
+<div id="simulation-solution" class="section level3">
+<h3>Simulation Solution</h3>
+<p>We can also use R to find this solution via <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo simulation</a>. This I solved for myself. Essentially we do a <a href="https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search">grid search</a> over possible combinations of two player cutpoints and find the values which leave each player winning as close to 50% of the rounds as possible.</p>
+<pre class="r"><code>cut_lite &lt;- seq(0, 1, by = .025)
+
+cut_combo &lt;- expand.grid(cut_lite, cut_lite) %&gt;%
+  tbl_df %&gt;%
+  rename(cut1 = Var1, cut2 = Var2) %&gt;%
+  mutate(p1_win = apply(., 1, FUN = function(x) cutoff_2(p1, p2, cut1 = x[1], cut2 = x[2])),
+         p1_prop = p1_win / n_draw)
+cut_combo</code></pre>
+<pre><code>## # A tibble: 1,681 x 4
+##     cut1  cut2 p1_win p1_prop
+##    &lt;dbl&gt; &lt;dbl&gt;  &lt;int&gt;   &lt;dbl&gt;
+##  1 0.000     0  49849  0.4985
+##  2 0.025     0  51071  0.5107
+##  3 0.050     0  52301  0.5230
+##  4 0.075     0  53432  0.5343
+##  5 0.100     0  54427  0.5443
+##  6 0.125     0  55381  0.5538
+##  7 0.150     0  56270  0.5627
+##  8 0.175     0  57164  0.5716
+##  9 0.200     0  57962  0.5796
+## 10 0.225     0  58657  0.5866
+## # ... with 1,671 more rows</code></pre>
+<pre class="r"><code>ggplot(cut_combo, aes(cut1, cut2, fill = p1_prop)) +
+  geom_raster() +
+  # geom_line(data = results_full, aes(cutpoint, cutpoint, fill = NULL)) +
+  geom_vline(xintercept = sqrt(5) / 2 - (1 / 2), linetype = 2, alpha = .5) +
+  geom_hline(yintercept = sqrt(5) / 2 - (1 / 2), linetype = 2, alpha = .5) +
+  geom_point(data = data_frame(x = sqrt(5) / 2 - (1 / 2),
+                               y = sqrt(5) / 2 - (1 / 2)),
+             aes(x, y, fill = NULL)) +
+  scale_fill_gradient2(midpoint = .5, labels = scales::percent) +
+  labs(x = &quot;Player 1 Cutpoint&quot;,
+       y = &quot;Player 2 Cutpoint&quot;,
+       fill = &quot;Player 1 Win\nPercentage&quot;) +
+  theme_bw(base_size = 16) +
+  theme(legend.position = &quot;bottom&quot;,
+        legend.text = element_text(size = 8))</code></pre>
+<p><img src="/"http://www.bensoltoff.com/test-hugo/"  # End your URL with a `/` trailing slash.post/2016-03-09-can-you-win-this-hot-new-game-show_files/figure-html/vary_cut_plot-1.png" width="672" /></p>
+<p>As can be seen above, if either player adjusts his or her strategy, then one of them will be more successful in the long run. In order to maintain the balance, each player should discard their first number if it is less than approximately 0.618.</p>
+</div>
+</div>

@@ -264,5 +264,613 @@ draft_pick_sim &amp;lt;- function(n_teams = 30, n_groups = 2, n_sims = 100){
 </description>
     </item>
     
+    <item>
+      <title>Can You Best The Mysterious Man In The Trench Coat?</title>
+      <link>http://www.bensoltoff.com/test-hugo/post/can-you-best-the-mysterious-man-in-the-trench-coat/</link>
+      <pubDate>Sun, 20 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.bensoltoff.com/test-hugo/post/can-you-best-the-mysterious-man-in-the-trench-coat/</guid>
+      <description>&lt;p&gt;The latest &lt;a href=&#34;http://fivethirtyeight.com/features/can-you-best-the-mysterious-man-in-the-trench-coat/&#34;&gt;Riddler puzzle on FiveThirtyEight&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A man in a trench coat approaches you and pulls an envelope from his pocket. He tells you that it contains a sum of money in bills, anywhere from $1 up to $1,000. He says that if you can guess the exact amount, you can keep the money. After each of your guesses he will tell you if your guess is too high, or too low. But! You only get nine tries. &lt;em&gt;What should your first guess be to maximize your expected winnings?&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;My solution is based on a basic, yet elegant, strategy. The first guess can be selected arbitrarily between $1 and $1000 - let’s say here that my first guess is $500. If my guess is correct, then I win (yay!). But since I have just a 1 in 1000 probability of guessing correctly on the first try, I’m probably not done. So if the trenchcoat man says the actual value is higher, my next guess will be the midway point between my first guess and the maximum possible value. Initially, this will be $1000. If the trenchcoat man says the actual value is lower, my next guess will be the midway point between my first guess and the minimum possible value ($1).&lt;/p&gt;
+&lt;p&gt;So let’s say my guess is too low and the actual value is higher. My second guess would be $750. If I’m correct, I win. If the actual amount is lower, my next guess will be the midpoint between $500 and $750 - remember that I now know it must be within this range.&lt;/p&gt;
+&lt;p&gt;I can iterate through this process with up to 9 guesses. At that point, if I still have not guessed the amount, I lose.&lt;/p&gt;
+&lt;p&gt;To simulate this process in &lt;code&gt;R&lt;/code&gt;, I wrote the following function&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;require(dplyr)
+require(ggplot2)
+require(ggrepel)
+
+set.seed(048573)
+
+# function to guess money amount using strategy
+guess_money &amp;lt;- function(actual, initial, n_tries = 9,
+                        min_val = 1, max_val = 1000,
+                        print_guess = FALSE){
+  # set iterator
+  i &amp;lt;- 1
+  
+  # while i is less than the max number of guesses, find the median value
+  # within the possible range. if guess is not correct, reset min_val or max_val
+  # depending on info trenchcoat man provides
+  while(i &amp;lt;= n_tries){
+    if(i == 1){
+      guess &amp;lt;- initial
+    } else{
+      guess &amp;lt;- round(mean(c(min_val, max_val)))
+    }
+    
+    # print the guess if print_guess is TRUE
+    if(print_guess) cat(paste0(&amp;quot;Guess Number &amp;quot;, i, &amp;quot;: $&amp;quot;, guess), sep = &amp;quot;\n&amp;quot;)
+
+    # if guess is correct, immediately exit the loop and return true
+    # if guess is not correct:
+    ## if actual is higher than guess, change min_val to guess
+    ## if actual is lower than guess, change max_val to guess
+    if(actual == guess){
+      return(c(win = TRUE, round = i))
+    } else if(actual &amp;gt; guess) {
+      min_val &amp;lt;- guess
+    } else if(actual &amp;lt; guess) {
+      max_val &amp;lt;- guess
+    }
+    
+    # iterate to next round if guess was incorrect
+    i &amp;lt;- i + 1
+  }
+  
+  # at this point still have not guessed the money amount, so lose
+  # correct i since we didn&amp;#39;t really guess the i-th time
+  return(c(win = FALSE, round = i - 1))
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As an example, let’s say the actual amount of money is $736 and my first guess is $500. Here’s how that would play out:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;guess_money(actual = 736, initial = 500, print_guess = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Guess Number 1: $500
+## Guess Number 2: $750
+## Guess Number 3: $625
+## Guess Number 4: $688
+## Guess Number 5: $719
+## Guess Number 6: $734
+## Guess Number 7: $742
+## Guess Number 8: $738
+## Guess Number 9: $736&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   win round 
+##     1     9&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This tells me the different guesses, as well as the fact that I eventually won (win = 1) in the ninth round.&lt;/p&gt;
+&lt;p&gt;Of course, there is no reason why I have to choose $500 for my initial guess. What if I instead started at $1?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;guess_money(actual = 736, initial = 1, print_guess = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Guess Number 1: $1
+## Guess Number 2: $500
+## Guess Number 3: $750
+## Guess Number 4: $625
+## Guess Number 5: $688
+## Guess Number 6: $719
+## Guess Number 7: $734
+## Guess Number 8: $742
+## Guess Number 9: $738&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   win round 
+##     0     9&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Clearly not the best initial guess. I wasted my first guess and ended up not winning the money. But how do we know which initial guess provides the highest &lt;em&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Expected_value&#34;&gt;expected value&lt;/a&gt;&lt;/em&gt;? That is, the initial guess that maximizes my potential winnings regardless of the actual amount of money held by the trenchcoat man?&lt;/p&gt;
+&lt;p&gt;To answer that question, I calculate the results for every potential initial guess (each integer between 1 and 1000) and every potential actual amount of money (again, each integer between 1 and 1000). This results in 1,000,000 different potential game states. From there, we can calculate the average winnings for each initial guess. These average winnings are the expected value, or what we might expect to win if we always use that amount for the initial guess.&lt;/p&gt;
+&lt;p&gt;In order to do this in &lt;code&gt;R&lt;/code&gt;, I use the &lt;code&gt;Vectorize&lt;/code&gt; function to expand my original function to work with multiple game states.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;min_val &amp;lt;- 1
+max_val &amp;lt;- 1000
+actual_vals &amp;lt;- min_val:max_val
+guess_vals &amp;lt;- min_val:max_val
+
+data &amp;lt;- expand.grid(actual = actual_vals, guess = guess_vals) %&amp;gt;%
+    tbl_df
+data&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,000,000 x 2
+##    actual guess
+##     &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
+##  1      1     1
+##  2      2     1
+##  3      3     1
+##  4      4     1
+##  5      5     1
+##  6      6     1
+##  7      7     1
+##  8      8     1
+##  9      9     1
+## 10     10     1
+## # ... with 999,990 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;result &amp;lt;- with(data, Vectorize(guess_money)(actual = actual,
+                                            initial = guess,
+                                            min_val = min_val,
+                                            max_val = max_val))
+  
+both &amp;lt;- bind_cols(data, t(result) %&amp;gt;%
+                    as.data.frame)
+both&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,000,000 x 4
+##    actual guess   win round
+##     &amp;lt;int&amp;gt; &amp;lt;int&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
+##  1      1     1     1     1
+##  2      2     1     0     9
+##  3      3     1     0     9
+##  4      4     1     1     9
+##  5      5     1     0     9
+##  6      6     1     0     9
+##  7      7     1     0     9
+##  8      8     1     1     8
+##  9      9     1     0     9
+## 10     10     1     0     9
+## # ... with 999,990 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now that we have all the potential outcomes of the game, I can calculate the expected winnings for each initial guess and find the best starting point.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;exp_val &amp;lt;- both %&amp;gt;%
+  group_by(guess) %&amp;gt;%
+  summarize(win_rate = mean(win),
+            exp_val = mean(actual * win)) %&amp;gt;%
+  ungroup
+exp_val&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,000 x 3
+##    guess win_rate exp_val
+##    &amp;lt;int&amp;gt;    &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+##  1     1     0.26     128
+##  2     2     0.26     128
+##  3     3     0.26     128
+##  4     4     0.26     128
+##  5     5     0.26     128
+##  6     6     0.26     128
+##  7     7     0.26     129
+##  8     8     0.26     129
+##  9     9     0.26     129
+## 10    10     0.26     129
+## # ... with 990 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;exp_val_max &amp;lt;- exp_val %&amp;gt;%
+  filter(exp_val == max(exp_val))
+
+ggplot(exp_val, aes(guess, exp_val)) +
+  geom_line() +
+  geom_point(data = exp_val_max) +
+  geom_text(data = exp_val_max, aes(label = paste0(&amp;quot;$&amp;quot;, guess)),
+            hjust = -.25) +
+  scale_x_continuous(labels = scales::dollar) +
+  scale_y_continuous(labels = scales::dollar) +
+  labs(x = &amp;quot;Initial Guess&amp;quot;,
+       y = &amp;quot;Average Winnings&amp;quot;) +
+  theme_bw(base_size = 16)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-03-20-can-you-best-the-mysterious-man-in-the-trench-coat_files/figure-html/exp_val-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;So if you get up to nine guesses, your first guess should be $744. Why is it not $500? Shouldn’t that be optimal, since it minimizes the potential range of values for which you’ll need to initially account? Well, not quite.&lt;/p&gt;
+&lt;p&gt;There are a range of initial guesses that provide you the same overall win rate.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;both %&amp;gt;%
+  group_by(guess) %&amp;gt;%
+  summarize(win_rate = mean(win)) %&amp;gt;%
+  ggplot(aes(guess, win_rate)) +
+  geom_line() +
+  scale_x_continuous(labels = scales::dollar) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = &amp;quot;Initial Guess&amp;quot;,
+       y = &amp;quot;Win Rate&amp;quot;) +
+  theme_bw(base_size = 16)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-03-20-can-you-best-the-mysterious-man-in-the-trench-coat_files/figure-html/win_rate-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The win rate for initially guessing $300 is the same as for initially guessing $600 - 51.1%. However the expected value for initially guessing $300 is just $204, compared to initially guessing $600 ($281). Which actual values can you win before you run out of attempts?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;both %&amp;gt;%
+  filter(guess == 300 | guess == 600) %&amp;gt;%
+  mutate(win = factor(win, levels = 0:1, labels = c(&amp;quot;Lose&amp;quot;, &amp;quot;Win&amp;quot;)),
+         guess = factor(guess, labels = c(&amp;quot;Initial Guess: $300&amp;quot;,
+                                          &amp;quot;Initial Guess: $600&amp;quot;))) %&amp;gt;%
+  ggplot(aes(x = actual, color = win)) +
+  facet_wrap(~ guess) +
+  geom_vline(aes(xintercept = actual, color = win)) +
+  labs(x = &amp;quot;Actual Amount of Money&amp;quot;,
+       color = NULL) +
+  scale_x_continuous(labels = scales::dollar) +
+  theme_bw(base_size = 16) +
+  theme(legend.position = &amp;quot;bottom&amp;quot;) +
+  guides(color = guide_legend(override.aes = list(size=3)))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-03-20-can-you-best-the-mysterious-man-in-the-trench-coat_files/figure-html/compare_300_600-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;This is the crux: lower starting guesses allow you to win at the same rate, but the value of each set of winnings is lower.&lt;/p&gt;
+&lt;div id=&#34;more-or-fewer-guesses&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;More (or Fewer) Guesses&lt;/h2&gt;
+&lt;p&gt;But what if we modify the game rules so that you get fewer guesses? Or more guesses? How does the number of attempts change the optimal starting guess?&lt;/p&gt;
+&lt;p&gt;Here I do the same thing as before, but I vary the number of tries the player gets for each set of simulations.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;guess_money_mult &amp;lt;- function(n_tries = 1, min_val = 1, max_val = 1000){
+  actual_vals &amp;lt;- min_val:max_val
+  guess_vals &amp;lt;- min_val:max_val
+  
+  data &amp;lt;- expand.grid(actual = actual_vals, guess = guess_vals) %&amp;gt;%
+    tbl_df
+  
+  result &amp;lt;- with(data, Vectorize(guess_money)(actual = actual,
+                                              initial = guess,
+                                              n_tries = n_tries,
+                                              min_val = min_val,
+                                              max_val = max_val))
+  
+  both &amp;lt;- bind_cols(data, t(result) %&amp;gt;%
+                      as.data.frame) %&amp;gt;%
+    mutate(n_tries = n_tries)
+  
+  return(both)
+}
+
+tries_all &amp;lt;- lapply(1:11, function(x) guess_money_mult(n_tries = x)) %&amp;gt;%
+  bind_rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tries_all_exp &amp;lt;- tries_all %&amp;gt;%
+  mutate(n_tries = factor(n_tries)) %&amp;gt;%
+  group_by(guess, n_tries) %&amp;gt;%
+  summarize(win_rate = mean(win),
+            exp_val = mean(actual * win))
+
+tries_all_exp_max &amp;lt;- tries_all_exp %&amp;gt;%
+  group_by(n_tries) %&amp;gt;%
+  filter(exp_val == max(exp_val)) %&amp;gt;%
+  arrange(-exp_val) %&amp;gt;%
+  slice(1)
+
+ggplot(tries_all_exp, aes(guess, exp_val,
+                          group = n_tries, color = n_tries)) +
+  geom_line() +
+  geom_point(data = tries_all_exp_max) +
+  geom_label_repel(data = tries_all_exp_max,
+                   aes(label = paste0(&amp;quot;$&amp;quot;, guess)),
+                   show.legend = FALSE) +
+  scale_x_continuous(labels = scales::dollar) +
+  scale_y_continuous(labels = scales::dollar) +
+  scale_color_discrete(guide = guide_legend(reverse = TRUE)) +
+  labs(x = &amp;quot;Initial Guess&amp;quot;,
+       y = &amp;quot;Expected Value&amp;quot;,
+       color = &amp;quot;Number of\nGuesses&amp;quot;,
+       group = &amp;quot;Number of\nGuesses&amp;quot;) +
+  theme_bw(base_size = 16)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-03-20-can-you-best-the-mysterious-man-in-the-trench-coat_files/figure-html/exp_val_all_plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The fewer guesses you receive, the higher your initial guess must be to maximize your expected winnings. If you had &lt;s&gt;12&lt;/s&gt; 11 or more guesses, it simply does not matter what your initial guess is: you can always win using my proposed strategy.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;update-only-need-11-guesses&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Update: Only Need 11 Guesses&lt;/h2&gt;
+&lt;p&gt;Thanks to Peter Owen for his helpful comment:&lt;/p&gt;
+&lt;blockquote class=&#34;twitter-tweet&#34; data-lang=&#34;en&#34;&gt;
+&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;
+&lt;a href=&#34;https://twitter.com/soltofbc&#34;&gt;&lt;span class=&#34;citation&#34;&gt;@soltofbc&lt;/span&gt;&lt;/a&gt; &lt;a href=&#34;https://twitter.com/FiveThirtyEight&#34;&gt;&lt;span class=&#34;citation&#34;&gt;@FiveThirtyEight&lt;/span&gt;&lt;/a&gt; &lt;a href=&#34;https://twitter.com/ollie&#34;&gt;&lt;span class=&#34;citation&#34;&gt;@ollie&lt;/span&gt;&lt;/a&gt; so long as you start within the right range. 11 guesses and you&#39;ll always win with that method. I think…
+&lt;/p&gt;
+— Peter Owen (&lt;span class=&#34;citation&#34;&gt;@_PeteOwen&lt;/span&gt;) &lt;a href=&#34;https://twitter.com/_PeteOwen/status/712087148003004416&#34;&gt;March 22, 2016&lt;/a&gt;
+&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(tries_all_exp, aes(guess, win_rate,
+                          group = n_tries, color = n_tries)) +
+  geom_line() +
+  scale_x_continuous(labels = scales::dollar) +
+  scale_y_continuous(labels = scales::percent) +
+  scale_color_discrete(guide = guide_legend(reverse = TRUE)) +
+  labs(x = &amp;quot;Initial Guess&amp;quot;,
+       y = &amp;quot;Win Rate&amp;quot;,
+       color = &amp;quot;Number of\nGuesses&amp;quot;,
+       group = &amp;quot;Number of\nGuesses&amp;quot;) +
+  theme_bw(base_size = 16)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-03-20-can-you-best-the-mysterious-man-in-the-trench-coat_files/figure-html/exp_val_all_win-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;11 is the minimum number of guesses needed to guarantee victory.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;update-2-744-or-745&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Update 2: $744 or $745?&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;http://somedisagree.com/2016/03/20/the-538-riddlerweird-guy-in-trench-coat/&#34;&gt;Others&lt;/a&gt; have found the optimal starting guess to be $745. This discrepancy is based on how you round each guess. The default &lt;code&gt;R&lt;/code&gt; approach to rounding &lt;a href=&#34;https://ironholds.org/projects/rbitrary/#why-doesnt-round-work-like-you-think-it-should&#34;&gt;is complicated&lt;/a&gt;, but adheres to international standards.&lt;/p&gt;
+&lt;div id=&#34;original-rounding-method&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Original rounding method&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;min_val &amp;lt;- 1
+max_val &amp;lt;- 1000
+actual_vals &amp;lt;- min_val:max_val
+guess_vals &amp;lt;- min_val:max_val
+
+data &amp;lt;- expand.grid(actual = actual_vals, guess = 744:745) %&amp;gt;%
+    tbl_df
+
+result &amp;lt;- with(data, Vectorize(guess_money)(actual = actual,
+                                            initial = guess,
+                                            min_val = min_val,
+                                            max_val = max_val))
+  
+bind_cols(data, t(result) %&amp;gt;%
+            as.data.frame) %&amp;gt;%
+  group_by(guess) %&amp;gt;%
+  summarize(win_rate = mean(win),
+            exp_val = mean(actual * win)) %&amp;gt;%
+  ungroup %&amp;gt;%
+  filter(guess == 744 | guess == 745)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 x 3
+##   guess win_rate exp_val
+##   &amp;lt;int&amp;gt;    &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1   744     0.51     318
+## 2   745     0.51     317&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;always-round-down&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Always round down&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;guess_money_floor &amp;lt;- function(actual, initial, n_tries = 9,
+                              min_val = 1, max_val = 1000,
+                              print_guess = FALSE){
+  # set iterator
+  i &amp;lt;- 1
+  
+  # while i is less than the max number of guesses, find the median value
+  # within the possible range. if guess is not correct, reset min_val or max_val
+  # depending on info trenchcoat man provides
+  while(i &amp;lt;= n_tries){
+    if(i == 1){
+      guess &amp;lt;- initial
+    } else{
+      guess &amp;lt;- floor(mean(c(min_val, max_val)))
+    }
+    
+    # print the guess if print_guess is TRUE
+    if(print_guess) cat(paste0(&amp;quot;Guess Number &amp;quot;, i, &amp;quot;: $&amp;quot;, guess), sep = &amp;quot;\n&amp;quot;)
+
+    # if guess is correct, immediately exit the loop and return true
+    # if guess is not correct:
+    ## if actual is higher than guess, change min_val to guess
+    ## if actual is lower than guess, change max_val to guess
+    if(actual == guess){
+      return(c(win = TRUE, round = i))
+    } else if(actual &amp;gt; guess) {
+      min_val &amp;lt;- guess
+    } else if(actual &amp;lt; guess) {
+      max_val &amp;lt;- guess
+    }
+    
+    # iterate to next round if guess was incorrect
+    i &amp;lt;- i + 1
+  }
+  
+  # at this point still have not guessed the money amount, so lose
+  # correct i since we didn&amp;#39;t really guess the i-th time
+  return(c(win = FALSE, round = i - 1))
+}
+
+result &amp;lt;- with(data, Vectorize(guess_money_floor)(actual = actual,
+                                                  initial = guess,
+                                                  min_val = min_val,
+                                                  max_val = max_val))
+  
+bind_cols(data, t(result) %&amp;gt;%
+            as.data.frame) %&amp;gt;%
+  group_by(guess) %&amp;gt;%
+  summarize(win_rate = mean(win),
+            exp_val = mean(actual * win)) %&amp;gt;%
+  ungroup %&amp;gt;%
+  filter(guess == 744 | guess == 745)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 x 3
+##   guess win_rate exp_val
+##   &amp;lt;int&amp;gt;    &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1   744     0.51     318
+## 2   745     0.51     317&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;always-round-up&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Always round up&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;guess_money_ceiling &amp;lt;- function(actual, initial, n_tries = 9,
+                                min_val = 1, max_val = 1000,
+                                print_guess = FALSE){
+  # set iterator
+  i &amp;lt;- 1
+  
+  # while i is less than the max number of guesses, find the median value
+  # within the possible range. if guess is not correct, reset min_val or max_val
+  # depending on info trenchcoat man provides
+  while(i &amp;lt;= n_tries){
+    if(i == 1){
+      guess &amp;lt;- initial
+    } else{
+      guess &amp;lt;- ceiling(mean(c(min_val, max_val)))
+    }
+    
+    # print the guess if print_guess is TRUE
+    if(print_guess) cat(paste0(&amp;quot;Guess Number &amp;quot;, i, &amp;quot;: $&amp;quot;, guess), sep = &amp;quot;\n&amp;quot;)
+
+    # if guess is correct, immediately exit the loop and return true
+    # if guess is not correct:
+    ## if actual is higher than guess, change min_val to guess
+    ## if actual is lower than guess, change max_val to guess
+    if(actual == guess){
+      return(c(win = TRUE, round = i))
+    } else if(actual &amp;gt; guess) {
+      min_val &amp;lt;- guess
+    } else if(actual &amp;lt; guess) {
+      max_val &amp;lt;- guess
+    }
+    
+    # iterate to next round if guess was incorrect
+    i &amp;lt;- i + 1
+  }
+  
+  # at this point still have not guessed the money amount, so lose
+  # correct i since we didn&amp;#39;t really guess the i-th time
+  return(c(win = FALSE, round = i - 1))
+}
+
+result &amp;lt;- with(data, Vectorize(guess_money_ceiling)(actual = actual,
+                                                    initial = guess,
+                                                    min_val = min_val,
+                                                    max_val = max_val))
+  
+bind_cols(data, t(result) %&amp;gt;%
+            as.data.frame) %&amp;gt;%
+  group_by(guess) %&amp;gt;%
+  summarize(win_rate = mean(win),
+            exp_val = mean(actual * win)) %&amp;gt;%
+  ungroup %&amp;gt;%
+  filter(guess == 744 | guess == 745)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 x 3
+##   guess win_rate exp_val
+##   &amp;lt;int&amp;gt;    &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1   744     0.51     318
+## 2   745     0.51     319&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Can You Win This Hot New Game Show?</title>
+      <link>http://www.bensoltoff.com/test-hugo/post/can-you-win-this-hot-new-game-show/</link>
+      <pubDate>Wed, 09 Mar 2016 12:00:00 -0500</pubDate>
+      
+      <guid>http://www.bensoltoff.com/test-hugo/post/can-you-win-this-hot-new-game-show/</guid>
+      <description>&lt;p&gt;So the latest &lt;a href=&#34;http://fivethirtyeight.com/features/can-you-win-this-hot-new-game-show/&#34;&gt;Riddler puzzle on FiveThirtyEight&lt;/a&gt; goes like this:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Two players go on a hot new game show called “Higher Number Wins.” The two go into separate booths, and each presses a button, and a random number between zero and one appears on a screen. (At this point, neither knows the other’s number, but they do know the numbers are chosen from a standard uniform distribution.) They can choose to keep that first number, or to press the button again to discard the first number and get a second random number, which they must keep. Then, they come out of their booths and see the final number for each player on the wall. The lavish grand prize — a case full of gold bullion — is awarded to the player who kept the higher number. Which number is the optimal cutoff for players to discard their first number and choose another? Put another way, within which range should they choose to keep the first number, and within which range should they reject it and try their luck with a second number?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;My initial thought was to try and solve this problem via simulation. The following code will generate 100,000 rounds of play between two players. For the sake of efficiency, we will draw twice for each player now and consider how the selection of the first or second number influences the outcome of the game.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;require(dplyr)
+require(magrittr)
+require(ggplot2)
+
+set.seed(938747)
+
+# number of rounds to play
+n_draw &amp;lt;- 100000&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p1 &amp;lt;- cbind(runif(n_draw), runif(n_draw))
+p2 &amp;lt;- cbind(runif(n_draw), runif(n_draw))
+
+head(p1)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        [,1]    [,2]
+## [1,] 0.5322 0.05078
+## [2,] 0.8662 0.60570
+## [3,] 0.1850 0.21139
+## [4,] 0.1196 0.26063
+## [5,] 0.8719 0.47793
+## [6,] 0.2358 0.38871&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(p2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        [,1]   [,2]
+## [1,] 0.8189 0.7178
+## [2,] 0.4383 0.2433
+## [3,] 0.6300 0.5607
+## [4,] 0.7649 0.4286
+## [5,] 0.8377 0.3405
+## [6,] 0.4543 0.7741&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;naive-players&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Naive Players&lt;/h2&gt;
+&lt;p&gt;The key thing to realize is that if the players adopt the same strategy, each player will always have a 50% chance of victory. Let’s consider a very simple strategy first: no matter what happens, always keep the first number. After all, the number is generated randomly so there is no guarantee that the second number will be larger than the first number. How well does player 1 do if both players employ this strategy?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sum(p1[,1] &amp;gt; p2[,1]) / n_draw&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.4985&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With this strategy, each player has a roughly 50% chance of winning the game. We can also see this is the same if each player always takes the second number.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sum(p1[,2] &amp;gt; p2[,2]) / n_draw&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.5031&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Okay, so this strategy is a bit naive. Why not be more sophisticated? Perhaps instead, players will only take the second number if their first number is low. An arbitrary cutpoint might be .5. That is, if either player gets a number less than .5 in the first draw, they will take whatever they get in the second draw. How does this strategy work? Here I write a short function to select the appropriate value from each round based on a specified cutpoint.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cutoff &amp;lt;- function(draw, cutpoint = .5){
+  ifelse(draw[, 1] &amp;lt; cutpoint, draw[, 2], draw[, 1])
+}
+
+sum(cutoff(p1) &amp;gt; cutoff(p2)) / n_draw&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.4994&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Because each player chose a cutpoint of .5, their probability of winning is still 50%.&lt;/p&gt;
+&lt;p&gt;This applies to all cutpoints, as long as both players select the same cutpoint.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cutpoints &amp;lt;- seq(0, 1, by = .01)
+results &amp;lt;- lapply(cutpoints,
+                  function(cutpoint) sum(cutoff(p1, cutpoint = cutpoint) &amp;gt;
+                                           cutoff(p2, cutpoint = cutpoint))) %&amp;gt;%
+  unlist
+
+results_full &amp;lt;- data_frame(cutpoint = cutpoints,
+                           win = results,
+                           win_prop = win / n_draw)
+results_full&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 101 x 3
+##    cutpoint   win win_prop
+##       &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt;    &amp;lt;dbl&amp;gt;
+##  1     0.00 49849   0.4985
+##  2     0.01 49846   0.4985
+##  3     0.02 49897   0.4990
+##  4     0.03 49896   0.4990
+##  5     0.04 49923   0.4992
+##  6     0.05 49930   0.4993
+##  7     0.06 49959   0.4996
+##  8     0.07 49965   0.4996
+##  9     0.08 50011   0.5001
+## 10     0.09 50051   0.5005
+## # ... with 91 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(results_full, aes(cutpoint, win_prop)) +
+  geom_line() +
+  scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
+  labs(x = &amp;quot;Cutpoint&amp;quot;,
+       y = &amp;quot;Player 1 Win Percentage&amp;quot;) +
+  theme_bw(base_size = 16)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-03-09-can-you-win-this-hot-new-game-show_files/figure-html/cut_plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;strategic-players&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Strategic Players&lt;/h2&gt;
+&lt;p&gt;Okay, so the issue with this analysis thus far is that this assumes the same strategies by both players. What would happen if two players do not use the same cutpoint? After all, the players cannot communicate with one another so there is no reason to expect that they would choose the same cutpoint. Let’s consider what happens if player 1 takes the second number if her first number is less than .5, but player 2 only takes the second number if his first number is less than .9.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cutoff_2 &amp;lt;- function(p1, p2, cut1 = .5, cut2 = .5){
+  sum(cutoff(p1, cutpoint = cut1) &amp;gt; cutoff(p2, cutpoint = cut2))
+}
+
+cutoff_2(p1, p2, cut1 = .5, cut2 = .9) / n_draw&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.5713&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Hmm, now we’re on to something. Player 1 wins 57% of the rounds. But what if Player 2 knows this and adjusts his cutpoint? And Player 1, expecting this, adjusts her’s? Essentially, we want to determine the equilibrium strategy for this game.&lt;/p&gt;
+&lt;div id=&#34;analytical-solution&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Analytical Solution&lt;/h3&gt;
+&lt;p&gt;So full disclosure: I didn’t do the math on this one. md46135 did the calculus and the full explanation can be found &lt;a href=&#34;http://forumserver.twoplustwo.com/25/probability/riddler-1594214/#post49516577&#34;&gt;here&lt;/a&gt;. The full probability equation is as follows (here, player 1 is named &lt;strong&gt;hero&lt;/strong&gt; and player 2 is named &lt;strong&gt;villain&lt;/strong&gt;):&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.wolframalpha.com/input/?i=(h*v)%2F2+%2B+v*(v+-+1)+-+v%5E2%2F2+%2B+h*(v*(h+-+1)+-+h%5E2%2F2+%2B+1%2F2)+-+(v*(h%5E2+-+1))%2F2+%2B+1%2F2&#34;&gt;&lt;span class=&#34;math display&#34;&gt;\[\Pr(H = 1) = - \frac{1}{2}(h^2 - 1)v + h \left( - \frac{h^2}{2} + (h - 1)v + \frac{1}{2} \right) + \frac{hv}{2} - \frac{v^2}{2} + (v - 1) v + \frac{1}{2}\]&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This is the joint probability of victory for player 1 (or the hero) given four potential states: hero and villain both keep their first numbers, hero keeps her first and villian keeps his second, hero keeps her second and villain keeps his first, and both hero and villain keep their second numbers. In order to calculate the equilibrium strategy for both players, calculate the partial derivatives with respect to &lt;em&gt;h&lt;/em&gt; and &lt;em&gt;v&lt;/em&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.wolframalpha.com/input/?i=(h*v)%2F2+%2B+v*(v+-+1)+-+v%5E2%2F2+%2B+h*(v*(h+-+1)+-+h%5E2%2F2+%2B+1%2F2)+-+(v*(h%5E2+-+1))%2F2+%2B+1%2F2+partial+derivative+with+respect+to+h&#34;&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{\partial \Pr(H = 1)}{\partial h} = \frac{1}{2} (-3h^2 + 2hv -v + 1)\]&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.wolframalpha.com/input/?i=(h*v)%2F2+%2B+v*(v+-+1)+-+v%5E2%2F2+%2B+h*(v*(h+-+1)+-+h%5E2%2F2+%2B+1%2F2)+-+(v*(h%5E2+-+1))%2F2+%2B+1%2F2+partial+derivative+with+respect+to+v&#34;&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{\partial \Pr(H = 1)}{\partial v} = \frac{1}{2} (h^2 - h + 2v - 1)\]&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Then set each derivative equal to 0, and solve for the appropriate values of &lt;em&gt;h&lt;/em&gt; and &lt;em&gt;v&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.wolframalpha.com/input/?i=v%2F2+-+h*v+-+h*(h+-+v)+%2B+v*(h+-+1)+-+h%5E2%2F2+%2B+1%2F2%3D0,++h%2F2+%2B+v+%2B+h*(h+-+1)+-+h%5E2%2F2+-+1%2F2%3D0&#34;&gt;&lt;span class=&#34;math display&#34;&gt;\[h = \frac{\sqrt{5}}{2} - \frac{1}{2}, v = \frac{\sqrt{5}}{2} - \frac{1}{2} \]&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;simulation-solution&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Simulation Solution&lt;/h3&gt;
+&lt;p&gt;We can also use R to find this solution via &lt;a href=&#34;https://en.wikipedia.org/wiki/Monte_Carlo_method&#34;&gt;Monte Carlo simulation&lt;/a&gt;. This I solved for myself. Essentially we do a &lt;a href=&#34;https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search&#34;&gt;grid search&lt;/a&gt; over possible combinations of two player cutpoints and find the values which leave each player winning as close to 50% of the rounds as possible.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cut_lite &amp;lt;- seq(0, 1, by = .025)
+
+cut_combo &amp;lt;- expand.grid(cut_lite, cut_lite) %&amp;gt;%
+  tbl_df %&amp;gt;%
+  rename(cut1 = Var1, cut2 = Var2) %&amp;gt;%
+  mutate(p1_win = apply(., 1, FUN = function(x) cutoff_2(p1, p2, cut1 = x[1], cut2 = x[2])),
+         p1_prop = p1_win / n_draw)
+cut_combo&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,681 x 4
+##     cut1  cut2 p1_win p1_prop
+##    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;  &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;
+##  1 0.000     0  49849  0.4985
+##  2 0.025     0  51071  0.5107
+##  3 0.050     0  52301  0.5230
+##  4 0.075     0  53432  0.5343
+##  5 0.100     0  54427  0.5443
+##  6 0.125     0  55381  0.5538
+##  7 0.150     0  56270  0.5627
+##  8 0.175     0  57164  0.5716
+##  9 0.200     0  57962  0.5796
+## 10 0.225     0  58657  0.5866
+## # ... with 1,671 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(cut_combo, aes(cut1, cut2, fill = p1_prop)) +
+  geom_raster() +
+  # geom_line(data = results_full, aes(cutpoint, cutpoint, fill = NULL)) +
+  geom_vline(xintercept = sqrt(5) / 2 - (1 / 2), linetype = 2, alpha = .5) +
+  geom_hline(yintercept = sqrt(5) / 2 - (1 / 2), linetype = 2, alpha = .5) +
+  geom_point(data = data_frame(x = sqrt(5) / 2 - (1 / 2),
+                               y = sqrt(5) / 2 - (1 / 2)),
+             aes(x, y, fill = NULL)) +
+  scale_fill_gradient2(midpoint = .5, labels = scales::percent) +
+  labs(x = &amp;quot;Player 1 Cutpoint&amp;quot;,
+       y = &amp;quot;Player 2 Cutpoint&amp;quot;,
+       fill = &amp;quot;Player 1 Win\nPercentage&amp;quot;) +
+  theme_bw(base_size = 16) +
+  theme(legend.position = &amp;quot;bottom&amp;quot;,
+        legend.text = element_text(size = 8))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-03-09-can-you-win-this-hot-new-game-show_files/figure-html/vary_cut_plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;As can be seen above, if either player adjusts his or her strategy, then one of them will be more successful in the long run. In order to maintain the balance, each player should discard their first number if it is less than approximately 0.618.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Will Someone Be Sitting In Your Seat On The Plane?</title>
+      <link>http://www.bensoltoff.com/test-hugo/post/will-someone-be-sitting-in-your-seat/</link>
+      <pubDate>Sun, 21 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.bensoltoff.com/test-hugo/post/will-someone-be-sitting-in-your-seat/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://fivethirtyeight.com/features/will-someone-be-sitting-in-your-seat-on-the-plane/&#34;&gt;This week’s Riddler puzzle on FiveThirtyEight&lt;/a&gt; features the following questions:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;There’s an airplane with 100 seats, and there are 100 ticketed passengers each with an assigned seat. They line up to board in some random order. However, the first person to board is the worst person alive, and just sits in a random seat, without even looking at his boarding pass. Each subsequent passenger sits in his or her own assigned seat if it’s empty, but sits in a random open seat if the assigned seat is occupied. What is the probability that you, the hundredth passenger to board, finds your seat unoccupied?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Coincidentally, I had seen “the lost boarding pass” problem described and solved using R on &lt;a href=&#34;http://varianceexplained.org/r/boarding-pass-simulation/&#34;&gt;David Robinson’s blog&lt;/a&gt;. In short, the answer is 50%. In asking for special extensions to the problem, I decided to evaluate if the probability remains constant across plane size. In fact, it does.&lt;/p&gt;
+&lt;p&gt;An &lt;a href=&#34;https://en.wikipedia.org/wiki/Airbus_A380&#34;&gt;Airbus A380&lt;/a&gt; has a maximum passenger capacity of 538 seats, which I rounded up to 600 for my maximum plane size. As seen below, it doesn’t matter the size of the plane - the probability of the last passenger sitting in his assigned seat is always 1/2.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-02-21-will-someone-be-sitting-in-your-seat-on-the-plane_files/figure-html/plot1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;In fact, as long as you are not one of the last passengers to board the airplane, you have an extremely high probability of sitting in your correct seat.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-02-21-will-someone-be-sitting-in-your-seat-on-the-plane_files/figure-html/plot2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;We can in fact be a bit more precise. As long as you are not one of the last 10 passengers to board the plane, regardless of the size of the plane, you have a greater than 90% chance of sitting in your correct seat.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-02-21-will-someone-be-sitting-in-your-seat-on-the-plane_files/figure-html/plot3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>

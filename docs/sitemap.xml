@@ -86,8 +86,8 @@
     
     <url>
     
-      <loc>http://www.bensoltoff.com/test-hugo/post/getting-started/</loc>
-      <lastmod>2016-04-20T12:00:00+00:00</lastmod>
+      <loc>http://www.bensoltoff.com/test-hugo/post/can-you-best-the-mysterious-man-in-the-trench-coat/</loc>
+      <lastmod>2016-03-20T00:00:00+00:00</lastmod>
     </url>
     
   
@@ -95,8 +95,8 @@
     
     <url>
     
-      <loc>http://www.bensoltoff.com/test-hugo/post/widgets/</loc>
-      <lastmod>2016-04-20T11:00:00+00:00</lastmod>
+      <loc>http://www.bensoltoff.com/test-hugo/post/can-you-win-this-hot-new-game-show/</loc>
+      <lastmod>2016-03-09T12:00:00-05:00</lastmod>
     </url>
     
   
@@ -104,17 +104,8 @@
     
     <url>
     
-      <loc>http://www.bensoltoff.com/test-hugo/post/managing-content/</loc>
-      <lastmod>2016-04-20T11:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>http://www.bensoltoff.com/test-hugo/post/writing-markdown-latex/</loc>
-      <lastmod>2016-04-20T10:00:00+00:00</lastmod>
+      <loc>http://www.bensoltoff.com/test-hugo/post/will-someone-be-sitting-in-your-seat/</loc>
+      <lastmod>2016-02-21T00:00:00+00:00</lastmod>
     </url>
     
   
@@ -140,15 +131,6 @@
     
     <url>
     
-      <loc>http://www.bensoltoff.com/test-hugo/post/migrate-from-jekyll/</loc>
-      <lastmod>2014-03-10T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
       <loc>http://www.bensoltoff.com/test-hugo/publication_types/2/</loc>
       <lastmod>2015-08-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
@@ -160,16 +142,6 @@
     <url>
     
       <loc>http://www.bensoltoff.com/test-hugo/tags/about/</loc>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>http://www.bensoltoff.com/test-hugo/tags/academic/</loc>
-      <lastmod>2016-04-20T12:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -216,26 +188,6 @@
     <url>
     
       <loc>http://www.bensoltoff.com/test-hugo/tags/cv/</loc>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>http://www.bensoltoff.com/test-hugo/tags/hugo/</loc>
-      <lastmod>2016-04-20T12:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    
-    <url>
-    
-      <loc>http://www.bensoltoff.com/test-hugo/tags/jekyll/</loc>
-      <lastmod>2014-03-10T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -385,7 +337,7 @@
     <url>
     
       <loc>http://www.bensoltoff.com/test-hugo/tags/</loc>
-      <lastmod>2016-04-20T12:00:00+00:00</lastmod>
+      <lastmod>2016-08-13T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

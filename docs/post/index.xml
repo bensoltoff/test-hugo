@@ -265,758 +265,611 @@ draft_pick_sim &amp;lt;- function(n_teams = 30, n_groups = 2, n_sims = 100){
     </item>
     
     <item>
-      <title>Getting started with the Academic framework for Hugo</title>
-      <link>http://www.bensoltoff.com/test-hugo/post/getting-started/</link>
-      <pubDate>Wed, 20 Apr 2016 12:00:00 +0000</pubDate>
+      <title>Can You Best The Mysterious Man In The Trench Coat?</title>
+      <link>http://www.bensoltoff.com/test-hugo/post/can-you-best-the-mysterious-man-in-the-trench-coat/</link>
+      <pubDate>Sun, 20 Mar 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://www.bensoltoff.com/test-hugo/post/getting-started/</guid>
-      <description>
-
-&lt;p&gt;The Academic framework enables you to easily create a beautifully simple personal or academic website using the &lt;a href=&#34;https://gohugo.io&#34; target=&#34;_blank&#34;&gt;Hugo&lt;/a&gt; static site generator.&lt;/p&gt;
-
-&lt;p&gt;Key features:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Easily manage your homepage, blog posts, publications, talks, and projects&lt;/li&gt;
-&lt;li&gt;Configurable widgets available for Biography, Publications, Projects, News/Blog, Talks, and Contact&lt;/li&gt;
-&lt;li&gt;Need a different section? Just use the Custom widget!&lt;/li&gt;
-&lt;li&gt;Write in &lt;a href=&#34;http://www.bensoltoff.com/test-hugo/post/writing-markdown-latex/&#34; target=&#34;_blank&#34;&gt;Markdown&lt;/a&gt; for easy formatting and code highlighting, with &lt;a href=&#34;https://en.wikibooks.org/wiki/LaTeX/Mathematics&#34; target=&#34;_blank&#34;&gt;LaTeX&lt;/a&gt; for mathematical expressions&lt;/li&gt;
-&lt;li&gt;Social/academic network linking, &lt;a href=&#34;https://analytics.google.com&#34; target=&#34;_blank&#34;&gt;Google Analytics&lt;/a&gt;, and &lt;a href=&#34;https://disqus.com&#34; target=&#34;_blank&#34;&gt;Disqus&lt;/a&gt; comments&lt;/li&gt;
-&lt;li&gt;Responsive and mobile friendly&lt;/li&gt;
-&lt;li&gt;Simple and refreshing one page design&lt;/li&gt;
-&lt;li&gt;Easy to customize&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://georgecushen.com/create-your-website-with-hugo/#installing-hugo&#34; target=&#34;_blank&#34;&gt;Install Hugo&lt;/a&gt; and create a new website by typing the following commands in your &lt;em&gt;Terminal&lt;/em&gt; or &lt;em&gt;Command Prompt&lt;/em&gt; app:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;hugo new site my_website
-cd my_website
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Install Academic with &lt;a href=&#34;https://help.github.com/articles/set-up-git/&#34; target=&#34;_blank&#34;&gt;git&lt;/a&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git clone https://github.com/gcushen/hugo-academic.git themes/academic
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Or alternatively, &lt;a href=&#34;https://github.com/gcushen/hugo-academic/archive/master.zip&#34; target=&#34;_blank&#34;&gt;download Academic&lt;/a&gt; and extract it into a &lt;code&gt;themes/academic&lt;/code&gt; folder within your Hugo website.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;If you are creating a new website, copy the contents of the &lt;code&gt;exampleSite&lt;/code&gt; folder to your website root folder, overwriting existing files if necessary. The &lt;code&gt;exampleSite&lt;/code&gt; folder contains an example config file and content to help you get started.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cp -av themes/academic/exampleSite/* .
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Start the Hugo server from your website root folder:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;hugo server --watch
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now you can go to &lt;a href=&#34;http://localhost:1313&#34; target=&#34;_blank&#34;&gt;localhost:1313&lt;/a&gt; and your new Academic powered website should appear.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Customize your website - refer to the &lt;em&gt;Getting Started&lt;/em&gt; section below&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Build your site by running the &lt;code&gt;hugo&lt;/code&gt; command. Then &lt;a href=&#34;https://georgecushen.com/create-your-website-with-hugo/&#34; target=&#34;_blank&#34;&gt;host it for free using Github Pages&lt;/a&gt;. Or alternatively, copy the generated &lt;code&gt;public/&lt;/code&gt; directory (by FTP, Rsync, etc.) to your production web server (such as your university&amp;rsquo;s hosting service).&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;getting-started&#34;&gt;Getting Started&lt;/h2&gt;
-
-&lt;p&gt;Assuming you created a new website with the example content following the installation steps above, this section explores just a few more steps in order to customize it.&lt;/p&gt;
-
-&lt;h3 id=&#34;core-parameters&#34;&gt;Core parameters&lt;/h3&gt;
-
-&lt;p&gt;The core parameters for the website can be edited in the &lt;code&gt;config.toml&lt;/code&gt; configuration file:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Set &lt;code&gt;baseurl&lt;/code&gt; to your website URL (we recommend &lt;a href=&#34;https://georgecushen.com/create-your-website-with-hugo/&#34; target=&#34;_blank&#34;&gt;GitHub Pages&lt;/a&gt; for free hosting)&lt;/li&gt;
-&lt;li&gt;Set &lt;code&gt;title&lt;/code&gt; to your desired website title such as your name&lt;/li&gt;
-&lt;li&gt;The example Disqus commenting variable should be cleared (e.g. &lt;code&gt;disqusShortname = &amp;quot;&amp;quot;&lt;/code&gt;) or set to your own &lt;a href=&#34;https://disqus.com/&#34; target=&#34;_blank&#34;&gt;Disqus&lt;/a&gt; shortname to enable commenting&lt;/li&gt;
-&lt;li&gt;Edit your details under &lt;code&gt;[params]&lt;/code&gt;; these will be displayed mainly in the homepage &lt;em&gt;about&lt;/em&gt; and &lt;em&gt;contact&lt;/em&gt; widgets (if used). To disable a contact field, simply clear the value to &lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Place a square cropped portrait photo named &lt;code&gt;portrait.jpg&lt;/code&gt; into the &lt;code&gt;static/img/&lt;/code&gt; folder, overwriting any defaults. Alternatively, you can edit the &lt;code&gt;avatar&lt;/code&gt; filepath to point to a different image name or clear the value to disable the avatar feature.&lt;/li&gt;
-&lt;li&gt;To enable LaTeX math for your site, set &lt;code&gt;math = true&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Social/academic networking links are defined as multiples of &lt;code&gt;[[params.social]]&lt;/code&gt;. They can be created or deleted as necessary.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;introduce-yourself&#34;&gt;Introduce yourself&lt;/h3&gt;
-
-&lt;p&gt;Edit your biography in the &lt;em&gt;about&lt;/em&gt; widget &lt;code&gt;content/home/about.md&lt;/code&gt; that you copied across from the &lt;code&gt;themes/academic/exampleSite/&lt;/code&gt; folder. The research interests and qualifications are stored as &lt;code&gt;interests&lt;/code&gt; and &lt;code&gt;education&lt;/code&gt; variables. The academic qualifications are defined as multiples of &lt;code&gt;[[education.courses]]&lt;/code&gt; and can be created or deleted as necessary. It&amp;rsquo;s possible to completely hide the interests and education lists by deleting their respective variables.&lt;/p&gt;
-
-&lt;h3 id=&#34;customize-the-homepage&#34;&gt;Customize the homepage&lt;/h3&gt;
-
-&lt;p&gt;Refer to our guide on using &lt;a href=&#34;http://www.bensoltoff.com/test-hugo/post/widgets/&#34; target=&#34;_blank&#34;&gt;widgets&lt;/a&gt; to customize your homepage.&lt;/p&gt;
-
-&lt;h3 id=&#34;add-your-content&#34;&gt;Add your content&lt;/h3&gt;
-
-&lt;p&gt;Refer to our guide on &lt;a href=&#34;http://www.bensoltoff.com/test-hugo/post/managing-content/&#34; target=&#34;_blank&#34;&gt;managing content&lt;/a&gt; to create your own publications, blog posts, talks, and projects.&lt;/p&gt;
-
-&lt;h3 id=&#34;remove-unused-widgets-and-pages&#34;&gt;Remove unused widgets and pages&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://www.bensoltoff.com/test-hugo/post/managing-content/#removing-content&#34; target=&#34;_blank&#34;&gt;How to remove unused widgets and content pages&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;customization-upgrading&#34;&gt;Customization &amp;amp; Upgrading&lt;/h3&gt;
-
-&lt;p&gt;Continue reading below for advanced customization tips and instructions for keeping the framework up-to-date with any improvements that become available.&lt;/p&gt;
-
-&lt;h2 id=&#34;advanced-customization&#34;&gt;Advanced customization&lt;/h2&gt;
-
-&lt;p&gt;It is possible to carry out many customizations without touching any files in &lt;code&gt;themes/academic&lt;/code&gt;, making it easier to upgrade the framework in the future.&lt;/p&gt;
-
-&lt;h3 id=&#34;navigation-menu&#34;&gt;Navigation menu&lt;/h3&gt;
-
-&lt;p&gt;The &lt;code&gt;[[menu.main]]&lt;/code&gt; entries towards the bottom of &lt;code&gt;config.toml&lt;/code&gt; define the navigation links at the top of the website. They can be added or removed as desired.&lt;/p&gt;
-
-&lt;p&gt;To create a dropdown sub-menu, add &lt;code&gt;identifier = &amp;quot;something&amp;quot;&lt;/code&gt; to the parent item and &lt;code&gt;parent = &amp;quot;something&amp;quot;&lt;/code&gt; to the child item.&lt;/p&gt;
-
-&lt;h3 id=&#34;website-icon&#34;&gt;Website icon&lt;/h3&gt;
-
-&lt;p&gt;Save your main icon and mobile icon as square PNG images named &lt;code&gt;icon.png&lt;/code&gt; and &lt;code&gt;apple-touch-icon.png&lt;/code&gt;, respectively. Place them in your root &lt;code&gt;static/img/&lt;/code&gt; folder.&lt;/p&gt;
-
-&lt;h3 id=&#34;theme-color-css&#34;&gt;Theme color (CSS)&lt;/h3&gt;
-
-&lt;p&gt;You can link custom CSS assets (relative to your root &lt;code&gt;static/css&lt;/code&gt;) from your &lt;code&gt;config.toml&lt;/code&gt; using &lt;code&gt;custom_css = [&amp;quot;custom.css&amp;quot;]&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;For example, lets make a green theme. First, define &lt;code&gt;custom_css = [&amp;quot;green.css&amp;quot;]&lt;/code&gt; in &lt;code&gt;config.toml&lt;/code&gt;. Then we can download the example &lt;a href=&#34;https://gist.github.com/gcushen/d5525a4506b9ccf83f2bce592a895495&#34; target=&#34;_blank&#34;&gt;green theme&lt;/a&gt; and save it as &lt;code&gt;static/css/green.css&lt;/code&gt;, relative to your website root (i.e. &lt;strong&gt;not&lt;/strong&gt; in the &lt;code&gt;themes&lt;/code&gt; directory).&lt;/p&gt;
-
-&lt;h3 id=&#34;analytics&#34;&gt;Analytics&lt;/h3&gt;
-
-&lt;p&gt;To enable &lt;a href=&#34;http://www.google.com/analytics&#34; target=&#34;_blank&#34;&gt;Google Analytics&lt;/a&gt;, add your tracking code in &lt;code&gt;config.toml&lt;/code&gt; similarly to &lt;code&gt;googleAnalytics = &amp;quot;UA-12345678-9&amp;quot;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;third-party-and-local-scripts-js&#34;&gt;Third party and local scripts (JS)&lt;/h3&gt;
-
-&lt;p&gt;To add a third party script, create a file named &lt;code&gt;head_custom.html&lt;/code&gt; in a &lt;code&gt;layouts/partials/&lt;/code&gt; folder at the root of your website (not in the &lt;code&gt;themes&lt;/code&gt; folder). Any HTML code added to this file will be included within your website&amp;rsquo;s &lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;. Therefore, it&amp;rsquo;s suitable for adding custom metadata or third party scripts specified with the &lt;em&gt;async&lt;/em&gt; attribute.&lt;/p&gt;
-
-&lt;p&gt;Whereas for your own local scripts, you can link your local JS assets (relative to your root &lt;code&gt;static/js&lt;/code&gt;) from your &lt;code&gt;config.toml&lt;/code&gt; using &lt;code&gt;custom_js  = [&amp;quot;custom.js&amp;quot;]&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;language-and-translation&#34;&gt;Language and translation&lt;/h3&gt;
-
-&lt;p&gt;The interface text (e.g. buttons) is stored in language files which are collected from Academic&amp;rsquo;s &lt;code&gt;themes/academic/i18n/&lt;/code&gt; folder, as well as an &lt;code&gt;i18n/&lt;/code&gt; folder at the root of your project.&lt;/p&gt;
-
-&lt;p&gt;To edit the interface text, copy &lt;code&gt;themes/academic/i18n/en.yaml&lt;/code&gt; to &lt;code&gt;i18n/en.yaml&lt;/code&gt; (relative to the root of your website). Open the new file and make any desired changes to the text appearing after &lt;code&gt;translation:&lt;/code&gt;. Note that the language files are formatted in YAML syntax.&lt;/p&gt;
-
-&lt;p&gt;To translate the interface text to another language, follow the above instructions, but name the new file in the form &lt;code&gt;i18n/X.yaml&lt;/code&gt; where &lt;code&gt;X&lt;/code&gt; is the appropriate &lt;a href=&#34;http://www.w3schools.com/tags/ref_language_codes.asp&#34; target=&#34;_blank&#34;&gt;ISO/RFC5646 language identifier&lt;/a&gt; for the translation. Then follow the brief instructions in the &lt;em&gt;Language&lt;/em&gt; section at the bottom of your &lt;code&gt;config.toml&lt;/code&gt;. To change the default language used by Academic, set &lt;code&gt;defaultContentLanguage&lt;/code&gt; to the desired language identifier in your configuration file.&lt;/p&gt;
-
-&lt;p&gt;To translate the navigation bar, you can edit the default &lt;code&gt;[[menu.main]]&lt;/code&gt; instances in &lt;code&gt;config.toml&lt;/code&gt;. However, for a multilingual site, you will need to duplicate all of the &lt;code&gt;[[menu.main]]&lt;/code&gt; instances and rename the new instances from &lt;code&gt;[[menu.main]]&lt;/code&gt; to &lt;code&gt;[[languages.X.menu.main]]&lt;/code&gt;, where &lt;code&gt;X&lt;/code&gt; is the language identifier (e.g. &lt;code&gt;[[languages.zh.menu.main]]&lt;/code&gt; for Simplified Chinese). Thus, the navigation bar can be displayed in multiple languages.&lt;/p&gt;
-
-&lt;p&gt;To translate a content file in your &lt;code&gt;content/&lt;/code&gt; folder into another language, copy the file to &lt;code&gt;filename.X.md&lt;/code&gt; where &lt;code&gt;filename&lt;/code&gt; is your existing filename and &lt;code&gt;X&lt;/code&gt; is the appropriate &lt;a href=&#34;http://www.w3schools.com/tags/ref_language_codes.asp&#34; target=&#34;_blank&#34;&gt;ISO/RFC5646 language identifier&lt;/a&gt; for the translation. Then translate the content in the new file to the specified language.&lt;/p&gt;
-
-&lt;p&gt;For further details on Hugo&amp;rsquo;s internationalization and multilingual features, refer to the &lt;a href=&#34;https://gohugo.io/content/multilingual/&#34; target=&#34;_blank&#34;&gt;associated Hugo documentation&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;permalinks&#34;&gt;Permalinks&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;Permalinks&lt;/em&gt;, or &lt;em&gt;permanent links&lt;/em&gt;, are URLs to individual pages and posts on your website. They are permanent web addresses which can be used to link to your content. Using Hugo&amp;rsquo;s &lt;em&gt;permalinks&lt;/em&gt; option these can be easily customized. For example, the blog post URL can be changed to the form &lt;em&gt;yourURL/2016/05/01/my-post-slug&lt;/em&gt; by adding the following near the top of your &lt;code&gt;config.toml&lt;/code&gt; (before &lt;code&gt;[params]&lt;/code&gt; settings):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[permalinks]
-    post = &amp;quot;/:year/:month/:day/:slug&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Where &lt;code&gt;:slug&lt;/code&gt; defaults to the filename of the post, excluding the file extension. However, slug may be overridden on a per post basis if desired, simply by setting &lt;code&gt;slug = &amp;quot;my-short-post-title&amp;quot;&lt;/code&gt; in your post preamble.&lt;/p&gt;
-
-&lt;h2 id=&#34;upgrading&#34;&gt;Upgrading&lt;/h2&gt;
-
-&lt;p&gt;Feel free to &lt;em&gt;star&lt;/em&gt; the project on &lt;a href=&#34;https://github.com/gcushen/hugo-academic/&#34; target=&#34;_blank&#34;&gt;Github&lt;/a&gt; and monitor the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/commits/master&#34; target=&#34;_blank&#34;&gt;commits&lt;/a&gt; for updates.&lt;/p&gt;
-
-&lt;p&gt;Before upgrading the framework, it is recommended to make a backup of your entire website directory, or at least your &lt;code&gt;themes/academic&lt;/code&gt; directory. You can also read about the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/releases&#34; target=&#34;_blank&#34;&gt;most recent milestones&lt;/a&gt; (but this doesn&amp;rsquo;t necessarily reflect the latest &lt;em&gt;master&lt;/em&gt; release).&lt;/p&gt;
-
-&lt;p&gt;Before upgrading for the first time, the remote &lt;em&gt;origin&lt;/em&gt; repository should be renamed to &lt;em&gt;upstream&lt;/em&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ cd themes/academic
-$ git remote rename origin upstream
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To list available updates:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ cd themes/academic
-$ git fetch upstream
-$ git log --pretty=oneline --abbrev-commit --decorate HEAD..upstream/master
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then, upgrade by running:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ git pull upstream
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If you have modified files in &lt;code&gt;themes/academic&lt;/code&gt;, git will attempt to auto-merge changes. If conflicts are reported, you will need to manually edit the files with conflicts and add them back (&lt;code&gt;git add &amp;lt;filename&amp;gt;&lt;/code&gt;).&lt;/p&gt;
-
-&lt;p&gt;If there are any issues after upgrading, you may wish to compare your site with the latest &lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite&#34; target=&#34;_blank&#34;&gt;example site&lt;/a&gt; to check if any settings changed.&lt;/p&gt;
-
-&lt;h2 id=&#34;feedback-contributing&#34;&gt;Feedback &amp;amp; Contributing&lt;/h2&gt;
-
-&lt;p&gt;Please use the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/issues&#34; target=&#34;_blank&#34;&gt;issue tracker&lt;/a&gt; to let me know about any bugs or feature requests, or alternatively make a pull request.&lt;/p&gt;
-
-&lt;p&gt;For general questions about Hugo, there is a &lt;a href=&#34;http://discuss.gohugo.io&#34; target=&#34;_blank&#34;&gt;Hugo discussion forum&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
-
-&lt;p&gt;Copyright 2016 &lt;a href=&#34;https://georgecushen.com&#34; target=&#34;_blank&#34;&gt;George Cushen&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Released under the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/blob/master/LICENSE.md&#34; target=&#34;_blank&#34;&gt;MIT&lt;/a&gt; license.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Customizing the homepage with widgets</title>
-      <link>http://www.bensoltoff.com/test-hugo/post/widgets/</link>
-      <pubDate>Wed, 20 Apr 2016 11:00:00 +0000</pubDate>
-      
-      <guid>http://www.bensoltoff.com/test-hugo/post/widgets/</guid>
-      <description>
-
-&lt;p&gt;Homepage widgets display as sections on the homepage. They can be enabled/disabled and configured as desired. Academic has the following widgets available to use:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;About/biography&lt;/li&gt;
-&lt;li&gt;Selected publications&lt;/li&gt;
-&lt;li&gt;Recent publications&lt;/li&gt;
-&lt;li&gt;Recent news/blog posts&lt;/li&gt;
-&lt;li&gt;Projects&lt;/li&gt;
-&lt;li&gt;Selected talks&lt;/li&gt;
-&lt;li&gt;Recent talks&lt;/li&gt;
-&lt;li&gt;Contact&lt;/li&gt;
-&lt;li&gt;Custom widget (demonstrated with the &lt;em&gt;teaching&lt;/em&gt; example)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The example site that you copied to create your site uses all the different types of widget (except talks), so you can generally just delete the widgets you don&amp;rsquo;t need and customize the parameters of the widgets you wish to keep.&lt;/p&gt;
-
-&lt;p&gt;The parameters for each widget vary. They can be found in the preamble/frontmatter (between the pair of &lt;code&gt;+++&lt;/code&gt;) for each widget installed in the &lt;code&gt;content/home/&lt;/code&gt; folder.&lt;/p&gt;
-
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;p&gt;By default, publications will be displayed in a simple list. If you prefer a more detailed list with abstract and image, you can enable the detailed publication list on the homepage by setting &lt;code&gt;detailed_list = true&lt;/code&gt; in &lt;code&gt;content/home/publications.md&lt;/code&gt;.&lt;/p&gt;
-
-&lt;/div&gt;
-
-
-&lt;h2 id=&#34;add-a-widget-to-the-homepage&#34;&gt;Add a widget to the homepage&lt;/h2&gt;
-
-&lt;p&gt;To add a widget manually, copy the relevant widget from &lt;code&gt;themes/academic/exampleSite/content/home/&lt;/code&gt; to your &lt;code&gt;content/home/&lt;/code&gt; folder.&lt;/p&gt;
-
-&lt;p&gt;Widget identifiers are set to their respective filenames, so a &lt;code&gt;content/home/about.md&lt;/code&gt; widget can be linked from the navigation bar by setting the relevant URL as &lt;code&gt;&amp;quot;#about&amp;quot;&lt;/code&gt; in &lt;code&gt;config.toml&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;This means that if you want to use multiple instances of a widget, each widget will be assigned a unique ID based on the filename that you set. You can then use that ID for linking, like in the above example.&lt;/p&gt;
-
-&lt;h2 id=&#34;using-the-custom-widget&#34;&gt;Using the custom widget&lt;/h2&gt;
-
-&lt;p&gt;You can use the custom widget to create your own home page sections.&lt;/p&gt;
-
-&lt;p&gt;Simply duplicate (copy/paste) and rename the example &lt;em&gt;teaching&lt;/em&gt; file at &lt;code&gt;content/home/teaching.md&lt;/code&gt;. Then edit the section title, weight (refer to &lt;em&gt;Ordering sections&lt;/em&gt; below), and content as desired.&lt;/p&gt;
-
-&lt;p&gt;You may also wish to add a navigation link to the top of the page that points to the new section. This can be achieved by adding something similar to the following lines to your &lt;code&gt;config.toml&lt;/code&gt;, where the URL will consist of the first title word in lowercase:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[[menu.main]]
-    name = &amp;quot;Research&amp;quot;
-    url = &amp;quot;#research&amp;quot;
-    weight = 10
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;remove-a-widget-from-the-homepage&#34;&gt;Remove a widget from the homepage&lt;/h2&gt;
-
-&lt;p&gt;If you do not require a particular widget, you can simply delete any associated files from the &lt;code&gt;content/home/&lt;/code&gt; folder.&lt;/p&gt;
-
-&lt;p&gt;To remove a navigation link from the top of the page, remove the associated &lt;code&gt;[[menu.main]]&lt;/code&gt; entry in &lt;code&gt;config.toml&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;ordering-widgets&#34;&gt;Ordering widgets&lt;/h2&gt;
-
-&lt;p&gt;The order that the homepage widgets are displayed in is defined by the &lt;code&gt;weight&lt;/code&gt; parameter in each of the files in the &lt;code&gt;content/home/&lt;/code&gt; directory. The widgets are displayed in ascending order of their &lt;code&gt;weight&lt;/code&gt;, so you can simply edit the &lt;code&gt;weight&lt;/code&gt; parameters as desired.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Managing content</title>
-      <link>http://www.bensoltoff.com/test-hugo/post/managing-content/</link>
-      <pubDate>Wed, 20 Apr 2016 11:00:00 +0000</pubDate>
-      
-      <guid>http://www.bensoltoff.com/test-hugo/post/managing-content/</guid>
-      <description>&lt;p&gt;This is a brief guide to managing content with the Academic framework. Content can include publications, projects, talks, and news/blog articles. After you have read this guide about creating and managing content, you may also be interested to learn about &lt;a href=&#34;http://www.bensoltoff.com/test-hugo/post/writing-markdown-latex/&#34; target=&#34;_blank&#34;&gt;writing content with Markdown, LaTeX, and Shortcodes&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;To enable LaTeX math rendering for a page, you should include &lt;code&gt;math = true&lt;/code&gt; in the page&amp;rsquo;s &lt;code&gt;+++&lt;/code&gt; preamble, as demonstrated in the included example site. Otherwise, to enable math on the homepage or for all pages, you must globally set &lt;code&gt;math = true&lt;/code&gt; in &lt;code&gt;config.toml&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;To disable source code highlighting by default for all pages, set &lt;code&gt;highlight = false&lt;/code&gt; in &lt;code&gt;config.toml&lt;/code&gt;. You can then enable source code highlighting only on pages that need it by setting &lt;code&gt;highlight = true&lt;/code&gt; in that page&amp;rsquo;s preamble. See the &lt;a href=&#34;http://www.bensoltoff.com/test-hugo/post/writing-markdown-latex/#code-highlighting&#34; target=&#34;_blank&#34;&gt;code-highlighting docs&lt;/a&gt; for more details.&lt;/p&gt;
-
-&lt;p&gt;To display a featured image in content page headers, the parameters below can be inserted towards the end of a page&amp;rsquo;s &lt;code&gt;+++&lt;/code&gt; preamble. It is assumed that the image is located in your &lt;code&gt;static/img/&lt;/code&gt; folder, so the full path in the example below will be &lt;code&gt;static/img/headers/getting-started.png&lt;/code&gt;. The &lt;code&gt;caption&lt;/code&gt; parameter can be used to write an image caption or credit.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-toml&#34;&gt;[header]
-image = &amp;quot;headers/getting-started.png&amp;quot;
-caption = &amp;quot;Image credit: [**Academic**](https://github.com/gcushen/hugo-academic/)&amp;quot;
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;p&gt;If you wish to prevent a featured image automatically being used for a post&amp;rsquo;s thumbnail on the homepage, the &lt;code&gt;preview = false&lt;/code&gt; parameter can be added to &lt;code&gt;[header]&lt;/code&gt;.&lt;/p&gt;
-
-&lt;/div&gt;
-
-
-&lt;h2 id=&#34;create-a-publication&#34;&gt;Create a publication&lt;/h2&gt;
-
-&lt;p&gt;To create a new publication:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;hugo new publication/my-paper-name.md
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then edit the default variables at the top of &lt;code&gt;content/publication/my-paper-name.md&lt;/code&gt; to include the details of your publication. The &lt;code&gt;url_&lt;/code&gt; variables are used to generate links associated with your publication, such as for viewing PDFs of papers. Here is an example:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;+++
-abstract = &amp;quot;An abstract...&amp;quot;
-authors = [&amp;quot;First author&#39;s name&amp;quot;, &amp;quot;Second author&#39;s name&amp;quot;]
-date = &amp;quot;2013-07-01&amp;quot;
-image = &amp;quot;&amp;quot;
-image_preview = &amp;quot;&amp;quot;
-math = false
-publication = &amp;quot;The publishing part of the citation goes here. You may use *Markdown* for italics etc.&amp;quot;
-title = &amp;quot;A publication title, such as title of a paper&amp;quot;
-url_code = &amp;quot;&amp;quot;
-url_dataset = &amp;quot;&amp;quot;
-url_pdf = &amp;quot;pdf/my-paper-name.pdf&amp;quot;
-url_project = &amp;quot;&amp;quot;
-url_slides = &amp;quot;&amp;quot;
-url_video = &amp;quot;&amp;quot;
-+++
-
-Further details on your publication can be written here using *Markdown* for formatting. This text will be displayed on the Publication Detail page.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;url_&lt;/code&gt; links can either point to local or web content. Associated local publication content, such as PDFs, may be copied to a &lt;code&gt;static/pdf/&lt;/code&gt; folder and referenced like &lt;code&gt;url_pdf = &amp;quot;pdf/my-paper-name.pdf&amp;quot;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;You can also associate custom link buttons with the publication by adding the following block(s) within the variable preamble above, which is denoted by &lt;code&gt;+++&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[[url_custom]]
-    name = &amp;quot;Custom Link&amp;quot;
-    url = &amp;quot;http://www.example.org&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If you enabled &lt;code&gt;detailed_list&lt;/code&gt; for publications in &lt;code&gt;config.toml&lt;/code&gt;, then there are a few more optional variables that you can include in the publication page preamble. You may use &lt;code&gt;abstract_short = &amp;quot;friendly summary of abstract&amp;quot;&lt;/code&gt; and &lt;code&gt;publication_short = &amp;quot;abbreviated publication details&amp;quot;&lt;/code&gt; to display a friendly summary of the abstract and abbreviate the publication details, respectively. Furthermore, there is the option to display a different image on the homepage to the publication detail page by setting &lt;code&gt;image_preview = &amp;quot;my-image.jpg&amp;quot;&lt;/code&gt;. This can be useful if you wish to scale down the image for the homepage or simply if you just wish to show a different image for the preview.&lt;/p&gt;
-
-&lt;div class=&#34;alert alert-warning&#34;&gt;
-  &lt;p&gt;Any double quotes (&lt;code&gt;&amp;quot;&lt;/code&gt;) or backslashes (e.g. LaTeX &lt;code&gt;\times&lt;/code&gt;) occurring within the value of any frontmatter parameter (such as the &lt;em&gt;abstract&lt;/em&gt;) should be escaped with a backslash (&lt;code&gt;\&lt;/code&gt;). For example, the symbol &lt;code&gt;&amp;quot;&lt;/code&gt; and LaTeX text &lt;code&gt;\times&lt;/code&gt; become &lt;code&gt;\&amp;quot;&lt;/code&gt; and &lt;code&gt;\\times&lt;/code&gt;, respectively. Refer to the &lt;a href=&#34;https://github.com/toml-lang/toml#user-content-string&#34; target=&#34;_blank&#34;&gt;TOML documentation&lt;/a&gt; for more info.&lt;/p&gt;
-
-&lt;/div&gt;
-
-
-&lt;h2 id=&#34;post-an-article&#34;&gt;Post an article&lt;/h2&gt;
-
-&lt;p&gt;To create a blog/news article:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;hugo new post/my-article-name.md
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then edit the newly created file &lt;code&gt;content/post/my-article-name.md&lt;/code&gt; with your full title and content.&lt;/p&gt;
-
-&lt;p&gt;Hugo will automatically generate summaries of posts that appear on the homepage. If you are dissatisfied with an automated summary, you can either limit the summary length by appropriately placing &lt;code&gt;&amp;#60;&amp;#33;&amp;#45;&amp;#45;more&amp;#45;&amp;#45;&amp;#62;&lt;/code&gt; in the article body, or completely override the automated summary by adding a &lt;code&gt;summary&lt;/code&gt; parameter to the &lt;code&gt;+++&lt;/code&gt; preamble such that:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;summary = &amp;quot;Summary of my post.&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To disable commenting for a specific post, you can add &lt;code&gt;disable_comments = true&lt;/code&gt; to the post &lt;code&gt;+++&lt;/code&gt; preamble. Or to disable commenting for all posts, you can either set &lt;code&gt;disqusShortname = &amp;quot;&amp;quot;&lt;/code&gt; or &lt;code&gt;disable_comments = true&lt;/code&gt; in &lt;code&gt;config.toml&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;create-a-project&#34;&gt;Create a project&lt;/h2&gt;
-
-&lt;p&gt;To create a project:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;hugo new project/my-project-name.md
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then edit the newly created file &lt;code&gt;content/project/my-project-name.md&lt;/code&gt;. Either you can link the project to an external project website by setting the &lt;code&gt;external_link = &amp;quot;http://external-project.com&amp;quot;&lt;/code&gt; variable at the top of the file, or you can add content (below the final &lt;code&gt;+++&lt;/code&gt;) in order to render a project page on your website.&lt;/p&gt;
-
-&lt;h2 id=&#34;create-a-talk&#34;&gt;Create a talk&lt;/h2&gt;
-
-&lt;p&gt;To create a talk:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;hugo new talk/my-talk-name.md
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then edit the newly created file &lt;code&gt;content/talk/my-talk-name.md&lt;/code&gt; with your full talk title and details. Note that many of the talk parameters are similar to the publication parameters.&lt;/p&gt;
-
-&lt;h2 id=&#34;manage-node-index-pages&#34;&gt;Manage node index pages&lt;/h2&gt;
-
-&lt;p&gt;The node index pages (e.g. &lt;code&gt;/post/&lt;/code&gt;) are the special pages which list all of your content. They can exist for blog posts, publications, and talks. The homepage widgets will automatically link to the node index pages when you have more items of content than can be displayed in the widget. Therefore, if you don&amp;rsquo;t have much content, you may not see the automatic links yet - but you can also manually link to them using a normal Markdown formatted link in your content.&lt;/p&gt;
-
-&lt;p&gt;You can edit the title and add your own content, such as an introduction, by creating and editing the following content files for the node indexes:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;hugo new post/_index.md
-hugo new publication/_index.md
-hugo new talk/_index.md
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then remove all parameters except for &lt;code&gt;title&lt;/code&gt;, &lt;code&gt;math&lt;/code&gt;, &lt;code&gt;highlight&lt;/code&gt;, and &lt;code&gt;date&lt;/code&gt;. Edit the &lt;code&gt;title&lt;/code&gt; parameter as desired and add any content after the &lt;code&gt;+++&lt;/code&gt; preamble/frontmatter ends. For example, you should have something similar to:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-toml&#34;&gt;+++
-title = &amp;quot;List of my posts&amp;quot;
-date = &amp;quot;2017-01-01T00:00:00Z&amp;quot;
-math = false
-highlight = false
-+++
-
-Below is an automatically generated list of all my blog posts!
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;removing-content&#34;&gt;Removing content&lt;/h2&gt;
-
-&lt;p&gt;Generally, to remove content, simply delete the relevant file from your &lt;code&gt;content/post&lt;/code&gt;, &lt;code&gt;content/publication&lt;/code&gt;, &lt;code&gt;content/project&lt;/code&gt;, or &lt;code&gt;content/talk&lt;/code&gt; folder.&lt;/p&gt;
-
-&lt;h2 id=&#34;view-your-updated-site&#34;&gt;View your updated site&lt;/h2&gt;
-
-&lt;p&gt;After you have made changes to your site, you can view it by running the &lt;code&gt;hugo server --watch&lt;/code&gt; command and then opening &lt;a href=&#34;http://localhost:1313&#34; target=&#34;_blank&#34;&gt;localhost:1313&lt;/a&gt; in your web browser.&lt;/p&gt;
-
-&lt;h2 id=&#34;deploy-your-site&#34;&gt;Deploy your site&lt;/h2&gt;
-
-&lt;p&gt;Finally, you can build the static website to a &lt;code&gt;public/&lt;/code&gt; folder ready for deployment using the &lt;code&gt;hugo&lt;/code&gt; command.&lt;/p&gt;
-
-&lt;p&gt;You may then deploy your site by copying the &lt;code&gt;public/&lt;/code&gt; directory (by FTP, SFTP, WebDAV, Rsync, git push, etc.) to your production web server.&lt;/p&gt;
-
-&lt;p&gt;Note that running &lt;code&gt;hugo&lt;/code&gt; does not remove any previously generated files before building. Therefore, it&amp;rsquo;s best practice to delete your &lt;code&gt;public/&lt;/code&gt; directory prior to running &lt;code&gt;hugo&lt;/code&gt; to ensure no old or interim files are deployed to your server.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Writing content with Markdown, LaTeX, and Shortcodes</title>
-      <link>http://www.bensoltoff.com/test-hugo/post/writing-markdown-latex/</link>
-      <pubDate>Wed, 20 Apr 2016 10:00:00 +0000</pubDate>
-      
-      <guid>http://www.bensoltoff.com/test-hugo/post/writing-markdown-latex/</guid>
-      <description>&lt;p&gt;Content can be written using &lt;a href=&#34;https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet&#34; target=&#34;_blank&#34;&gt;Markdown&lt;/a&gt;, &lt;a href=&#34;https://en.wikibooks.org/wiki/LaTeX/Mathematics&#34; target=&#34;_blank&#34;&gt;LaTeX math&lt;/a&gt;, and &lt;a href=&#34;http://gohugo.io/extras/shortcodes/&#34; target=&#34;_blank&#34;&gt;Hugo Shortcodes&lt;/a&gt;. Additionally, HTML may be used for advanced formatting. This article gives an overview of the most common formatting options.&lt;/p&gt;
-
-&lt;h2 id=&#34;sub-headings&#34;&gt;Sub-headings&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;## Heading 2
-### Heading 3
-#### Heading 4
-##### Heading 5
-###### Heading 6
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;emphasis&#34;&gt;Emphasis&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;Italics with *asterisks* or _underscores_.
-
-Bold with **asterisks** or __underscores__.
-
-Combined emphasis with **asterisks and _underscores_**.
-
-Strikethrough with ~~two tildes~~.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;ordered-lists&#34;&gt;Ordered lists&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;1. First item
-2. Another item
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;unordered-lists&#34;&gt;Unordered lists&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;* First item
-* Another item
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;images&#34;&gt;Images&lt;/h2&gt;
-
-&lt;p&gt;Images may be added to a page by placing them in your &lt;code&gt;static/img/&lt;/code&gt; folder and referencing them using one of the following two notations:&lt;/p&gt;
-
-&lt;p&gt;A general image:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;![alternative text for search engines](/img/screenshot.png)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;A numbered figure with caption:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{{&amp;lt; figure src=&amp;quot;/img/screenshot.png&amp;quot; title=&amp;quot;Figure Caption&amp;quot; &amp;gt;}}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;links&#34;&gt;Links&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;[I&#39;m a link](https://www.google.com)
-[A post]({{&amp;lt; ref &amp;quot;post/hi.md&amp;quot; &amp;gt;}})
-[A publication]({{&amp;lt; ref &amp;quot;publication/hi.md&amp;quot; &amp;gt;}})
-[A project]({{&amp;lt; ref &amp;quot;project/hi.md&amp;quot; &amp;gt;}})
-[Another section]({{&amp;lt; relref &amp;quot;hi.md#who&amp;quot; &amp;gt;}})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;emojis&#34;&gt;Emojis&lt;/h2&gt;
-
-&lt;p&gt;See the &lt;a href=&#34;http://www.webpagefx.com/tools/emoji-cheat-sheet/&#34; target=&#34;_blank&#34;&gt;Emoji cheat sheet&lt;/a&gt; for available emoticons. The following serves as an example, but you should remove the spaces between each emoji name and pair of semicolons:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;I : heart : Academic : smile :
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;I ❤️ Academic 😄&lt;/p&gt;
-
-&lt;h2 id=&#34;blockquote&#34;&gt;Blockquote&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;gt; This is a blockquote.
-&lt;/code&gt;&lt;/pre&gt;
-
+      <guid>http://www.bensoltoff.com/test-hugo/post/can-you-best-the-mysterious-man-in-the-trench-coat/</guid>
+      <description>&lt;p&gt;The latest &lt;a href=&#34;http://fivethirtyeight.com/features/can-you-best-the-mysterious-man-in-the-trench-coat/&#34;&gt;Riddler puzzle on FiveThirtyEight&lt;/a&gt;:&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;This is a blockquote.&lt;/p&gt;
+&lt;p&gt;A man in a trench coat approaches you and pulls an envelope from his pocket. He tells you that it contains a sum of money in bills, anywhere from $1 up to $1,000. He says that if you can guess the exact amount, you can keep the money. After each of your guesses he will tell you if your guess is too high, or too low. But! You only get nine tries. &lt;em&gt;What should your first guess be to maximize your expected winnings?&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;My solution is based on a basic, yet elegant, strategy. The first guess can be selected arbitrarily between $1 and $1000 - let’s say here that my first guess is $500. If my guess is correct, then I win (yay!). But since I have just a 1 in 1000 probability of guessing correctly on the first try, I’m probably not done. So if the trenchcoat man says the actual value is higher, my next guess will be the midway point between my first guess and the maximum possible value. Initially, this will be $1000. If the trenchcoat man says the actual value is lower, my next guess will be the midway point between my first guess and the minimum possible value ($1).&lt;/p&gt;
+&lt;p&gt;So let’s say my guess is too low and the actual value is higher. My second guess would be $750. If I’m correct, I win. If the actual amount is lower, my next guess will be the midpoint between $500 and $750 - remember that I now know it must be within this range.&lt;/p&gt;
+&lt;p&gt;I can iterate through this process with up to 9 guesses. At that point, if I still have not guessed the amount, I lose.&lt;/p&gt;
+&lt;p&gt;To simulate this process in &lt;code&gt;R&lt;/code&gt;, I wrote the following function&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;require(dplyr)
+require(ggplot2)
+require(ggrepel)
 
-&lt;h2 id=&#34;footnotes&#34;&gt;Footnotes&lt;/h2&gt;
+set.seed(048573)
 
-&lt;pre&gt;&lt;code&gt;I have more [^1] to say.
+# function to guess money amount using strategy
+guess_money &amp;lt;- function(actual, initial, n_tries = 9,
+                        min_val = 1, max_val = 1000,
+                        print_guess = FALSE){
+  # set iterator
+  i &amp;lt;- 1
+  
+  # while i is less than the max number of guesses, find the median value
+  # within the possible range. if guess is not correct, reset min_val or max_val
+  # depending on info trenchcoat man provides
+  while(i &amp;lt;= n_tries){
+    if(i == 1){
+      guess &amp;lt;- initial
+    } else{
+      guess &amp;lt;- round(mean(c(min_val, max_val)))
+    }
+    
+    # print the guess if print_guess is TRUE
+    if(print_guess) cat(paste0(&amp;quot;Guess Number &amp;quot;, i, &amp;quot;: $&amp;quot;, guess), sep = &amp;quot;\n&amp;quot;)
 
-[^1]: Footnote example.
-&lt;/code&gt;&lt;/pre&gt;
+    # if guess is correct, immediately exit the loop and return true
+    # if guess is not correct:
+    ## if actual is higher than guess, change min_val to guess
+    ## if actual is lower than guess, change max_val to guess
+    if(actual == guess){
+      return(c(win = TRUE, round = i))
+    } else if(actual &amp;gt; guess) {
+      min_val &amp;lt;- guess
+    } else if(actual &amp;lt; guess) {
+      max_val &amp;lt;- guess
+    }
+    
+    # iterate to next round if guess was incorrect
+    i &amp;lt;- i + 1
+  }
+  
+  # at this point still have not guessed the money amount, so lose
+  # correct i since we didn&amp;#39;t really guess the i-th time
+  return(c(win = FALSE, round = i - 1))
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As an example, let’s say the actual amount of money is $736 and my first guess is $500. Here’s how that would play out:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;guess_money(actual = 736, initial = 500, print_guess = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Guess Number 1: $500
+## Guess Number 2: $750
+## Guess Number 3: $625
+## Guess Number 4: $688
+## Guess Number 5: $719
+## Guess Number 6: $734
+## Guess Number 7: $742
+## Guess Number 8: $738
+## Guess Number 9: $736&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   win round 
+##     1     9&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This tells me the different guesses, as well as the fact that I eventually won (win = 1) in the ninth round.&lt;/p&gt;
+&lt;p&gt;Of course, there is no reason why I have to choose $500 for my initial guess. What if I instead started at $1?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;guess_money(actual = 736, initial = 1, print_guess = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Guess Number 1: $1
+## Guess Number 2: $500
+## Guess Number 3: $750
+## Guess Number 4: $625
+## Guess Number 5: $688
+## Guess Number 6: $719
+## Guess Number 7: $734
+## Guess Number 8: $742
+## Guess Number 9: $738&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   win round 
+##     0     9&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Clearly not the best initial guess. I wasted my first guess and ended up not winning the money. But how do we know which initial guess provides the highest &lt;em&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Expected_value&#34;&gt;expected value&lt;/a&gt;&lt;/em&gt;? That is, the initial guess that maximizes my potential winnings regardless of the actual amount of money held by the trenchcoat man?&lt;/p&gt;
+&lt;p&gt;To answer that question, I calculate the results for every potential initial guess (each integer between 1 and 1000) and every potential actual amount of money (again, each integer between 1 and 1000). This results in 1,000,000 different potential game states. From there, we can calculate the average winnings for each initial guess. These average winnings are the expected value, or what we might expect to win if we always use that amount for the initial guess.&lt;/p&gt;
+&lt;p&gt;In order to do this in &lt;code&gt;R&lt;/code&gt;, I use the &lt;code&gt;Vectorize&lt;/code&gt; function to expand my original function to work with multiple game states.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;min_val &amp;lt;- 1
+max_val &amp;lt;- 1000
+actual_vals &amp;lt;- min_val:max_val
+guess_vals &amp;lt;- min_val:max_val
 
-&lt;p&gt;I have more &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; to say.&lt;/p&gt;
+data &amp;lt;- expand.grid(actual = actual_vals, guess = guess_vals) %&amp;gt;%
+    tbl_df
+data&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,000,000 x 2
+##    actual guess
+##     &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
+##  1      1     1
+##  2      2     1
+##  3      3     1
+##  4      4     1
+##  5      5     1
+##  6      6     1
+##  7      7     1
+##  8      8     1
+##  9      9     1
+## 10     10     1
+## # ... with 999,990 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;result &amp;lt;- with(data, Vectorize(guess_money)(actual = actual,
+                                            initial = guess,
+                                            min_val = min_val,
+                                            max_val = max_val))
+  
+both &amp;lt;- bind_cols(data, t(result) %&amp;gt;%
+                    as.data.frame)
+both&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,000,000 x 4
+##    actual guess   win round
+##     &amp;lt;int&amp;gt; &amp;lt;int&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
+##  1      1     1     1     1
+##  2      2     1     0     9
+##  3      3     1     0     9
+##  4      4     1     1     9
+##  5      5     1     0     9
+##  6      6     1     0     9
+##  7      7     1     0     9
+##  8      8     1     1     8
+##  9      9     1     0     9
+## 10     10     1     0     9
+## # ... with 999,990 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now that we have all the potential outcomes of the game, I can calculate the expected winnings for each initial guess and find the best starting point.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;exp_val &amp;lt;- both %&amp;gt;%
+  group_by(guess) %&amp;gt;%
+  summarize(win_rate = mean(win),
+            exp_val = mean(actual * win)) %&amp;gt;%
+  ungroup
+exp_val&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,000 x 3
+##    guess win_rate exp_val
+##    &amp;lt;int&amp;gt;    &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+##  1     1     0.26     128
+##  2     2     0.26     128
+##  3     3     0.26     128
+##  4     4     0.26     128
+##  5     5     0.26     128
+##  6     6     0.26     128
+##  7     7     0.26     129
+##  8     8     0.26     129
+##  9     9     0.26     129
+## 10    10     0.26     129
+## # ... with 990 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;exp_val_max &amp;lt;- exp_val %&amp;gt;%
+  filter(exp_val == max(exp_val))
 
-&lt;h2 id=&#34;code-highlighting&#34;&gt;Code highlighting&lt;/h2&gt;
+ggplot(exp_val, aes(guess, exp_val)) +
+  geom_line() +
+  geom_point(data = exp_val_max) +
+  geom_text(data = exp_val_max, aes(label = paste0(&amp;quot;$&amp;quot;, guess)),
+            hjust = -.25) +
+  scale_x_continuous(labels = scales::dollar) +
+  scale_y_continuous(labels = scales::dollar) +
+  labs(x = &amp;quot;Initial Guess&amp;quot;,
+       y = &amp;quot;Average Winnings&amp;quot;) +
+  theme_bw(base_size = 16)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-03-20-can-you-best-the-mysterious-man-in-the-trench-coat_files/figure-html/exp_val-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;So if you get up to nine guesses, your first guess should be $744. Why is it not $500? Shouldn’t that be optimal, since it minimizes the potential range of values for which you’ll need to initially account? Well, not quite.&lt;/p&gt;
+&lt;p&gt;There are a range of initial guesses that provide you the same overall win rate.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;both %&amp;gt;%
+  group_by(guess) %&amp;gt;%
+  summarize(win_rate = mean(win)) %&amp;gt;%
+  ggplot(aes(guess, win_rate)) +
+  geom_line() +
+  scale_x_continuous(labels = scales::dollar) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = &amp;quot;Initial Guess&amp;quot;,
+       y = &amp;quot;Win Rate&amp;quot;) +
+  theme_bw(base_size = 16)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-03-20-can-you-best-the-mysterious-man-in-the-trench-coat_files/figure-html/win_rate-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The win rate for initially guessing $300 is the same as for initially guessing $600 - 51.1%. However the expected value for initially guessing $300 is just $204, compared to initially guessing $600 ($281). Which actual values can you win before you run out of attempts?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;both %&amp;gt;%
+  filter(guess == 300 | guess == 600) %&amp;gt;%
+  mutate(win = factor(win, levels = 0:1, labels = c(&amp;quot;Lose&amp;quot;, &amp;quot;Win&amp;quot;)),
+         guess = factor(guess, labels = c(&amp;quot;Initial Guess: $300&amp;quot;,
+                                          &amp;quot;Initial Guess: $600&amp;quot;))) %&amp;gt;%
+  ggplot(aes(x = actual, color = win)) +
+  facet_wrap(~ guess) +
+  geom_vline(aes(xintercept = actual, color = win)) +
+  labs(x = &amp;quot;Actual Amount of Money&amp;quot;,
+       color = NULL) +
+  scale_x_continuous(labels = scales::dollar) +
+  theme_bw(base_size = 16) +
+  theme(legend.position = &amp;quot;bottom&amp;quot;) +
+  guides(color = guide_legend(override.aes = list(size=3)))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-03-20-can-you-best-the-mysterious-man-in-the-trench-coat_files/figure-html/compare_300_600-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;This is the crux: lower starting guesses allow you to win at the same rate, but the value of each set of winnings is lower.&lt;/p&gt;
+&lt;div id=&#34;more-or-fewer-guesses&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;More (or Fewer) Guesses&lt;/h2&gt;
+&lt;p&gt;But what if we modify the game rules so that you get fewer guesses? Or more guesses? How does the number of attempts change the optimal starting guess?&lt;/p&gt;
+&lt;p&gt;Here I do the same thing as before, but I vary the number of tries the player gets for each set of simulations.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;guess_money_mult &amp;lt;- function(n_tries = 1, min_val = 1, max_val = 1000){
+  actual_vals &amp;lt;- min_val:max_val
+  guess_vals &amp;lt;- min_val:max_val
+  
+  data &amp;lt;- expand.grid(actual = actual_vals, guess = guess_vals) %&amp;gt;%
+    tbl_df
+  
+  result &amp;lt;- with(data, Vectorize(guess_money)(actual = actual,
+                                              initial = guess,
+                                              n_tries = n_tries,
+                                              min_val = min_val,
+                                              max_val = max_val))
+  
+  both &amp;lt;- bind_cols(data, t(result) %&amp;gt;%
+                      as.data.frame) %&amp;gt;%
+    mutate(n_tries = n_tries)
+  
+  return(both)
+}
 
-&lt;p&gt;Pass the &lt;em&gt;language&lt;/em&gt; of the code, such as &lt;code&gt;python&lt;/code&gt;, as a parameter after three backticks:&lt;/p&gt;
+tries_all &amp;lt;- lapply(1:11, function(x) guess_money_mult(n_tries = x)) %&amp;gt;%
+  bind_rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tries_all_exp &amp;lt;- tries_all %&amp;gt;%
+  mutate(n_tries = factor(n_tries)) %&amp;gt;%
+  group_by(guess, n_tries) %&amp;gt;%
+  summarize(win_rate = mean(win),
+            exp_val = mean(actual * win))
 
-&lt;pre&gt;&lt;code&gt;```python
-# Example of code highlighting
-input_string_var = input(&amp;quot;Enter some data: &amp;quot;)
-print(&amp;quot;You entered: {}&amp;quot;.format(input_string_var))
-```
-&lt;/code&gt;&lt;/pre&gt;
+tries_all_exp_max &amp;lt;- tries_all_exp %&amp;gt;%
+  group_by(n_tries) %&amp;gt;%
+  filter(exp_val == max(exp_val)) %&amp;gt;%
+  arrange(-exp_val) %&amp;gt;%
+  slice(1)
 
-&lt;p&gt;Result:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Example of code highlighting
-input_string_var = input(&amp;quot;Enter some data: &amp;quot;)
-print(&amp;quot;You entered: {}&amp;quot;.format(input_string_var))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;highlighting-options&#34;&gt;Highlighting options&lt;/h3&gt;
-
-&lt;p&gt;The Academic theme uses &lt;a href=&#34;https://highlightjs.org&#34; target=&#34;_blank&#34;&gt;highlight.js&lt;/a&gt; for source code highlighting, and highlighting is enabled by default for all pages. However, several configuration options are supported that allow finer-grained control over highlight.js.&lt;/p&gt;
-
-&lt;p&gt;The following table lists the supported options for configuring highlight.js, along with their expected type and a short description. A &amp;ldquo;yes&amp;rdquo; in the &lt;strong&gt;config.toml&lt;/strong&gt; column means the value can be set globally in &lt;code&gt;config.toml&lt;/code&gt;, and a &amp;ldquo;yes&amp;rdquo; in the &lt;strong&gt;preamble&lt;/strong&gt; column means that the value can be set locally in a particular page&amp;rsquo;s preamble.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;option&lt;/th&gt;
-&lt;th&gt;type&lt;/th&gt;
-&lt;th&gt;description&lt;/th&gt;
-&lt;th&gt;config.toml&lt;/th&gt;
-&lt;th&gt;preamble&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;highlight&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;boolean&lt;/td&gt;
-&lt;td&gt;enable/disable highlighting&lt;/td&gt;
-&lt;td&gt;yes&lt;/td&gt;
-&lt;td&gt;yes&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;highlight_languages&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;slice&lt;/td&gt;
-&lt;td&gt;choose additional languages&lt;/td&gt;
-&lt;td&gt;yes&lt;/td&gt;
-&lt;td&gt;yes&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;highlight_style&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;string&lt;/td&gt;
-&lt;td&gt;choose a highlighting style&lt;/td&gt;
-&lt;td&gt;yes&lt;/td&gt;
-&lt;td&gt;no&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;highlight_version&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;string&lt;/td&gt;
-&lt;td&gt;choose the highlight.js version&lt;/td&gt;
-&lt;td&gt;yes&lt;/td&gt;
-&lt;td&gt;no&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h4 id=&#34;option-highlight&#34;&gt;Option &lt;code&gt;highlight&lt;/code&gt;&lt;/h4&gt;
-
-&lt;p&gt;The &lt;code&gt;highlight&lt;/code&gt; option allows enabling or disabling the inclusion of highlight.js, either globally or for a particular page. If the option is unset, it has the same effect as if you had specified &lt;code&gt;highlight = true&lt;/code&gt;. That is, the highlight.js javascript and css files will be included in every page. If you&amp;rsquo;d like to only include highlight.js files on pages that actually require source code highlighting, you can set &lt;code&gt;highlight = false&lt;/code&gt; in &lt;code&gt;config.toml&lt;/code&gt;, and then override it by setting &lt;code&gt;highlight = true&lt;/code&gt; in the preamble of any pages that require source code highlighting. Conversely, you could enable highlighting globally, and disable it locally for pages that do not require it. Here is a table that shows whether highlighting will be enabled for a page, based on the values of &lt;code&gt;highlight&lt;/code&gt; set in &lt;code&gt;config.toml&lt;/code&gt; and/or the page&amp;rsquo;s preamble.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;config.toml&lt;/th&gt;
-&lt;th&gt;page preamble&lt;/th&gt;
-&lt;th&gt;highlighting enabled for page?&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;unset or true&lt;/td&gt;
-&lt;td&gt;unset or true&lt;/td&gt;
-&lt;td&gt;yes&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;unset or true&lt;/td&gt;
-&lt;td&gt;false&lt;/td&gt;
-&lt;td&gt;no&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;false&lt;/td&gt;
-&lt;td&gt;unset or false&lt;/td&gt;
-&lt;td&gt;no&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;false&lt;/td&gt;
-&lt;td&gt;true&lt;/td&gt;
-&lt;td&gt;yes&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h4 id=&#34;option-highlight-languages&#34;&gt;Option &lt;code&gt;highlight_languages&lt;/code&gt;&lt;/h4&gt;
-
-&lt;p&gt;The &lt;code&gt;highlight_languages&lt;/code&gt; option allows you to specify additional languages that are supported by highlight.js, but are not considered &amp;ldquo;common&amp;rdquo; and therefore are not supported by default. For example, if you want source code highlighting for Go and clojure in all pages, set &lt;code&gt;highlight_languages = [&amp;quot;go&amp;quot;, &amp;quot;clojure&amp;quot;]&lt;/code&gt; in &lt;code&gt;config.toml&lt;/code&gt;. If, on the other hand, you want to enable a language only for a specific page, you can set &lt;code&gt;highlight_languages&lt;/code&gt; in that page&amp;rsquo;s preamble.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code&gt;highlight_languages&lt;/code&gt; options specified in &lt;code&gt;config.toml&lt;/code&gt; and in a page&amp;rsquo;s preamble are additive. That is, if &lt;code&gt;config.toml&lt;/code&gt; contains, &lt;code&gt;highlight_languages = [&amp;quot;go&amp;quot;]&lt;/code&gt; and the page&amp;rsquo;s preamble contains &lt;code&gt;highlight_languages = [&amp;quot;ocaml&amp;quot;]&lt;/code&gt;, then javascript files for &lt;em&gt;both&lt;/em&gt; go and ocaml will be included for that page.&lt;/p&gt;
-
-&lt;p&gt;If the &lt;code&gt;highlight_languages&lt;/code&gt; option is set, then the corresponding javascript files will be served from the &lt;a href=&#34;https://cdnjs.com/libraries/highlight.js/&#34; target=&#34;_blank&#34;&gt;cdnjs server&lt;/a&gt;. To see a list of available languages, visit the &lt;a href=&#34;https://cdnjs.com/libraries/highlight.js/&#34; target=&#34;_blank&#34;&gt;cdnjs page&lt;/a&gt; and search for links with the word &amp;ldquo;languages&amp;rdquo;.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code&gt;highlight_languages&lt;/code&gt; option provides an easy and convenient way to include support for additional languages to be severed from a CDN. If serving unmodified files from cdnjs doesn&amp;rsquo;t meet your needs, you can include javascript files for additional language support via one of the methods described in the &lt;a href=&#34;http://www.bensoltoff.com/test-hugo/post/getting-started/#third-party-and-local-scripts-js&#34; target=&#34;_blank&#34;&gt;getting started guide&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h4 id=&#34;option-highlight-style&#34;&gt;Option &lt;code&gt;highlight_style&lt;/code&gt;&lt;/h4&gt;
-
-&lt;p&gt;The &lt;code&gt;highlight_style&lt;/code&gt; option allows you to select an alternate css style for highlighted code. For example, if you wanted to use the solarized-dark style, you could set &lt;code&gt;highlight_style = &amp;quot;solarized-dark&amp;quot;&lt;/code&gt; in &lt;code&gt;config.toml&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;If the &lt;code&gt;highlight_style&lt;/code&gt; option is unset, the default is to use the file &lt;code&gt;/css/highlight.min.css&lt;/code&gt;, either the one provided by the Academic theme, or else the one in your local &lt;code&gt;static&lt;/code&gt; directory.  The &lt;code&gt;/css/highlight.min.css&lt;/code&gt; file provided by Academic is equivalent to the &lt;code&gt;github&lt;/code&gt; style from highlight.js.&lt;/p&gt;
-
-&lt;p&gt;If the &lt;code&gt;highlight_style&lt;/code&gt; option &lt;em&gt;is&lt;/em&gt; set, then &lt;code&gt;/css/highlight.min.css&lt;/code&gt; is ignored, and the corresponding css file will be served from the &lt;a href=&#34;https://cdnjs.com/libraries/highlight.js/&#34; target=&#34;_blank&#34;&gt;cdnjs server&lt;/a&gt;. To see a list of available styles, visit the &lt;a href=&#34;https://cdnjs.com/libraries/highlight.js/&#34; target=&#34;_blank&#34;&gt;cdnjs page&lt;/a&gt; and search for links with the word &amp;ldquo;styles&amp;rdquo;.&lt;/p&gt;
-
-&lt;p&gt;See the &lt;a href=&#34;https://highlightjs.org/static/demo/&#34; target=&#34;_blank&#34;&gt;highlight.js demo page&lt;/a&gt; for examples of available styles.&lt;/p&gt;
-
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;p&gt;Not all styles listed on the &lt;a href=&#34;https://highlightjs.org/static/demo/&#34; target=&#34;_blank&#34;&gt;highlight.js demo page&lt;/a&gt; are available from the &lt;a href=&#34;https://cdnjs.com/libraries/highlight.js/&#34; target=&#34;_blank&#34;&gt;cdnjs server&lt;/a&gt;. If you want to use a style that is not served by cdnjs, just leave &lt;code&gt;highlight_style&lt;/code&gt; unset, and place the corresponding css file in &lt;code&gt;/static/css/highlight.min.css&lt;/code&gt;.&lt;/p&gt;
-
+ggplot(tries_all_exp, aes(guess, exp_val,
+                          group = n_tries, color = n_tries)) +
+  geom_line() +
+  geom_point(data = tries_all_exp_max) +
+  geom_label_repel(data = tries_all_exp_max,
+                   aes(label = paste0(&amp;quot;$&amp;quot;, guess)),
+                   show.legend = FALSE) +
+  scale_x_continuous(labels = scales::dollar) +
+  scale_y_continuous(labels = scales::dollar) +
+  scale_color_discrete(guide = guide_legend(reverse = TRUE)) +
+  labs(x = &amp;quot;Initial Guess&amp;quot;,
+       y = &amp;quot;Expected Value&amp;quot;,
+       color = &amp;quot;Number of\nGuesses&amp;quot;,
+       group = &amp;quot;Number of\nGuesses&amp;quot;) +
+  theme_bw(base_size = 16)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-03-20-can-you-best-the-mysterious-man-in-the-trench-coat_files/figure-html/exp_val_all_plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The fewer guesses you receive, the higher your initial guess must be to maximize your expected winnings. If you had &lt;s&gt;12&lt;/s&gt; 11 or more guesses, it simply does not matter what your initial guess is: you can always win using my proposed strategy.&lt;/p&gt;
 &lt;/div&gt;
-
-
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;p&gt;If you don&amp;rsquo;t want to change the default style that ships with Academic but you do want the style file served from the &lt;a href=&#34;https://cdnjs.com/libraries/highlight.js/&#34; target=&#34;_blank&#34;&gt;cdnjs server&lt;/a&gt;, set &lt;code&gt;highlight_style = &amp;quot;github&amp;quot;&lt;/code&gt; in &lt;code&gt;config.toml&lt;/code&gt;.&lt;/p&gt;
-
+&lt;div id=&#34;update-only-need-11-guesses&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Update: Only Need 11 Guesses&lt;/h2&gt;
+&lt;p&gt;Thanks to Peter Owen for his helpful comment:&lt;/p&gt;
+&lt;blockquote class=&#34;twitter-tweet&#34; data-lang=&#34;en&#34;&gt;
+&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;
+&lt;a href=&#34;https://twitter.com/soltofbc&#34;&gt;&lt;span class=&#34;citation&#34;&gt;@soltofbc&lt;/span&gt;&lt;/a&gt; &lt;a href=&#34;https://twitter.com/FiveThirtyEight&#34;&gt;&lt;span class=&#34;citation&#34;&gt;@FiveThirtyEight&lt;/span&gt;&lt;/a&gt; &lt;a href=&#34;https://twitter.com/ollie&#34;&gt;&lt;span class=&#34;citation&#34;&gt;@ollie&lt;/span&gt;&lt;/a&gt; so long as you start within the right range. 11 guesses and you&#39;ll always win with that method. I think…
+&lt;/p&gt;
+— Peter Owen (&lt;span class=&#34;citation&#34;&gt;@_PeteOwen&lt;/span&gt;) &lt;a href=&#34;https://twitter.com/_PeteOwen/status/712087148003004416&#34;&gt;March 22, 2016&lt;/a&gt;
+&lt;/blockquote&gt;
+&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(tries_all_exp, aes(guess, win_rate,
+                          group = n_tries, color = n_tries)) +
+  geom_line() +
+  scale_x_continuous(labels = scales::dollar) +
+  scale_y_continuous(labels = scales::percent) +
+  scale_color_discrete(guide = guide_legend(reverse = TRUE)) +
+  labs(x = &amp;quot;Initial Guess&amp;quot;,
+       y = &amp;quot;Win Rate&amp;quot;,
+       color = &amp;quot;Number of\nGuesses&amp;quot;,
+       group = &amp;quot;Number of\nGuesses&amp;quot;) +
+  theme_bw(base_size = 16)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-03-20-can-you-best-the-mysterious-man-in-the-trench-coat_files/figure-html/exp_val_all_win-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;11 is the minimum number of guesses needed to guarantee victory.&lt;/p&gt;
 &lt;/div&gt;
+&lt;div id=&#34;update-2-744-or-745&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Update 2: $744 or $745?&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;http://somedisagree.com/2016/03/20/the-538-riddlerweird-guy-in-trench-coat/&#34;&gt;Others&lt;/a&gt; have found the optimal starting guess to be $745. This discrepancy is based on how you round each guess. The default &lt;code&gt;R&lt;/code&gt; approach to rounding &lt;a href=&#34;https://ironholds.org/projects/rbitrary/#why-doesnt-round-work-like-you-think-it-should&#34;&gt;is complicated&lt;/a&gt;, but adheres to international standards.&lt;/p&gt;
+&lt;div id=&#34;original-rounding-method&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Original rounding method&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;min_val &amp;lt;- 1
+max_val &amp;lt;- 1000
+actual_vals &amp;lt;- min_val:max_val
+guess_vals &amp;lt;- min_val:max_val
 
+data &amp;lt;- expand.grid(actual = actual_vals, guess = 744:745) %&amp;gt;%
+    tbl_df
 
-&lt;p&gt;The &lt;code&gt;highlight_style&lt;/code&gt; option is only recognized when set in &lt;code&gt;config.toml&lt;/code&gt;. Setting &lt;code&gt;highlight_style&lt;/code&gt; in your page&amp;rsquo;s preamble has no effect.&lt;/p&gt;
-
-&lt;h4 id=&#34;option-highlight-version&#34;&gt;Option &lt;code&gt;highlight_version&lt;/code&gt;&lt;/h4&gt;
-
-&lt;p&gt;The &lt;code&gt;highlight_version&lt;/code&gt; option, as the name implies, allows you to select the version of highlight.js you want to use. The default value is &amp;ldquo;9.9.0&amp;rdquo;. The &lt;code&gt;highlight_version&lt;/code&gt; option is only recognized when set in &lt;code&gt;config.toml&lt;/code&gt;. Setting &lt;code&gt;highlight_version&lt;/code&gt; in your page&amp;rsquo;s preamble has no effect.&lt;/p&gt;
-
-&lt;h2 id=&#34;twitter-tweet&#34;&gt;Twitter tweet&lt;/h2&gt;
-
-&lt;p&gt;To include a single tweet, pass the tweet’s ID from the tweet&amp;rsquo;s URL as parameter to the shortcode:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{{&amp;lt; tweet 666616452582129664 &amp;gt;}}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;youtube&#34;&gt;Youtube&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;{{&amp;lt; youtube w7Ft2ymGmfc &amp;gt;}}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;vimeo&#34;&gt;Vimeo&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;{{&amp;lt; vimeo 146022717 &amp;gt;}}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;github-gist&#34;&gt;GitHub gist&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;{{&amp;lt; gist USERNAME GIST-ID  &amp;gt;}}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;speaker-deck&#34;&gt;Speaker Deck&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;{{&amp;lt; speakerdeck 4e8126e72d853c0060001f97 &amp;gt;}}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;rm-latex-math&#34;&gt;$\rm \LaTeX$ math&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-TeX&#34;&gt;$$\left [ – \frac{\hbar^2}{2 m} \frac{\partial^2}{\partial x^2} + V \right ] \Psi = i \hbar \frac{\partial}{\partial t} \Psi$$
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;$$\left [ – \frac{\hbar^2}{2 m} \frac{\partial^2}{\partial x^2} + V \right ] \Psi = i \hbar \frac{\partial}{\partial t} \Psi$$&lt;/p&gt;
-
-&lt;p&gt;Alternatively, inline math can be written by wrapping the formula with only a single &lt;code&gt;$&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;This is inline: $\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon$
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This is inline: $\mathbf{y} = \mathbf{X}\boldsymbol\beta + \boldsymbol\varepsilon$&lt;/p&gt;
-
-&lt;h2 id=&#34;table&#34;&gt;Table&lt;/h2&gt;
-
-&lt;p&gt;Code:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-Markdown&#34;&gt;| Command           | Description                    |
-| ------------------| ------------------------------ |
-| `hugo`            | Build your website.            |
-| `hugo serve -w`   | View your website.             |
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Result:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Command&lt;/th&gt;
-&lt;th&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;hugo&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;Build your website.&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;&lt;code&gt;hugo serve -w&lt;/code&gt;&lt;/td&gt;
-&lt;td&gt;View your website.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;alerts&#34;&gt;Alerts&lt;/h2&gt;
-
-&lt;p&gt;Alerts are a useful feature that add side content such as tips, notes, or warnings to your articles. They are especially handy when writing educational tutorial-style articles. Use the corresponding shortcodes to enable alerts inside your content:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{{% alert note %}}
-Here&#39;s a tip or note...
-{{% /alert %}}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will display the following &lt;em&gt;note&lt;/em&gt; block:&lt;/p&gt;
-
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;p&gt;Here&amp;rsquo;s a tip or note&amp;hellip;&lt;/p&gt;
-
+result &amp;lt;- with(data, Vectorize(guess_money)(actual = actual,
+                                            initial = guess,
+                                            min_val = min_val,
+                                            max_val = max_val))
+  
+bind_cols(data, t(result) %&amp;gt;%
+            as.data.frame) %&amp;gt;%
+  group_by(guess) %&amp;gt;%
+  summarize(win_rate = mean(win),
+            exp_val = mean(actual * win)) %&amp;gt;%
+  ungroup %&amp;gt;%
+  filter(guess == 744 | guess == 745)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 x 3
+##   guess win_rate exp_val
+##   &amp;lt;int&amp;gt;    &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1   744     0.51     318
+## 2   745     0.51     317&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;div id=&#34;always-round-down&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Always round down&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;guess_money_floor &amp;lt;- function(actual, initial, n_tries = 9,
+                              min_val = 1, max_val = 1000,
+                              print_guess = FALSE){
+  # set iterator
+  i &amp;lt;- 1
+  
+  # while i is less than the max number of guesses, find the median value
+  # within the possible range. if guess is not correct, reset min_val or max_val
+  # depending on info trenchcoat man provides
+  while(i &amp;lt;= n_tries){
+    if(i == 1){
+      guess &amp;lt;- initial
+    } else{
+      guess &amp;lt;- floor(mean(c(min_val, max_val)))
+    }
+    
+    # print the guess if print_guess is TRUE
+    if(print_guess) cat(paste0(&amp;quot;Guess Number &amp;quot;, i, &amp;quot;: $&amp;quot;, guess), sep = &amp;quot;\n&amp;quot;)
 
+    # if guess is correct, immediately exit the loop and return true
+    # if guess is not correct:
+    ## if actual is higher than guess, change min_val to guess
+    ## if actual is lower than guess, change max_val to guess
+    if(actual == guess){
+      return(c(win = TRUE, round = i))
+    } else if(actual &amp;gt; guess) {
+      min_val &amp;lt;- guess
+    } else if(actual &amp;lt; guess) {
+      max_val &amp;lt;- guess
+    }
+    
+    # iterate to next round if guess was incorrect
+    i &amp;lt;- i + 1
+  }
+  
+  # at this point still have not guessed the money amount, so lose
+  # correct i since we didn&amp;#39;t really guess the i-th time
+  return(c(win = FALSE, round = i - 1))
+}
 
-&lt;pre&gt;&lt;code&gt;{{% alert warning %}}
-Here&#39;s some important information...
-{{% /alert %}}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will display the following &lt;em&gt;warning&lt;/em&gt; block:&lt;/p&gt;
-
-&lt;div class=&#34;alert alert-warning&#34;&gt;
-  &lt;p&gt;Here&amp;rsquo;s some important information&amp;hellip;&lt;/p&gt;
-
+result &amp;lt;- with(data, Vectorize(guess_money_floor)(actual = actual,
+                                                  initial = guess,
+                                                  min_val = min_val,
+                                                  max_val = max_val))
+  
+bind_cols(data, t(result) %&amp;gt;%
+            as.data.frame) %&amp;gt;%
+  group_by(guess) %&amp;gt;%
+  summarize(win_rate = mean(win),
+            exp_val = mean(actual * win)) %&amp;gt;%
+  ungroup %&amp;gt;%
+  filter(guess == 744 | guess == 745)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 x 3
+##   guess win_rate exp_val
+##   &amp;lt;int&amp;gt;    &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1   744     0.51     318
+## 2   745     0.51     317&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;div id=&#34;always-round-up&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Always round up&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;guess_money_ceiling &amp;lt;- function(actual, initial, n_tries = 9,
+                                min_val = 1, max_val = 1000,
+                                print_guess = FALSE){
+  # set iterator
+  i &amp;lt;- 1
+  
+  # while i is less than the max number of guesses, find the median value
+  # within the possible range. if guess is not correct, reset min_val or max_val
+  # depending on info trenchcoat man provides
+  while(i &amp;lt;= n_tries){
+    if(i == 1){
+      guess &amp;lt;- initial
+    } else{
+      guess &amp;lt;- ceiling(mean(c(min_val, max_val)))
+    }
+    
+    # print the guess if print_guess is TRUE
+    if(print_guess) cat(paste0(&amp;quot;Guess Number &amp;quot;, i, &amp;quot;: $&amp;quot;, guess), sep = &amp;quot;\n&amp;quot;)
 
-&lt;div class=&#34;footnotes&#34;&gt;
+    # if guess is correct, immediately exit the loop and return true
+    # if guess is not correct:
+    ## if actual is higher than guess, change min_val to guess
+    ## if actual is lower than guess, change max_val to guess
+    if(actual == guess){
+      return(c(win = TRUE, round = i))
+    } else if(actual &amp;gt; guess) {
+      min_val &amp;lt;- guess
+    } else if(actual &amp;lt; guess) {
+      max_val &amp;lt;- guess
+    }
+    
+    # iterate to next round if guess was incorrect
+    i &amp;lt;- i + 1
+  }
+  
+  # at this point still have not guessed the money amount, so lose
+  # correct i since we didn&amp;#39;t really guess the i-th time
+  return(c(win = FALSE, round = i - 1))
+}
 
-&lt;hr /&gt;
+result &amp;lt;- with(data, Vectorize(guess_money_ceiling)(actual = actual,
+                                                    initial = guess,
+                                                    min_val = min_val,
+                                                    max_val = max_val))
+  
+bind_cols(data, t(result) %&amp;gt;%
+            as.data.frame) %&amp;gt;%
+  group_by(guess) %&amp;gt;%
+  summarize(win_rate = mean(win),
+            exp_val = mean(actual * win)) %&amp;gt;%
+  ungroup %&amp;gt;%
+  filter(guess == 744 | guess == 745)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 2 x 3
+##   guess win_rate exp_val
+##   &amp;lt;int&amp;gt;    &amp;lt;dbl&amp;gt;   &amp;lt;dbl&amp;gt;
+## 1   744     0.51     318
+## 2   745     0.51     319&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Can You Win This Hot New Game Show?</title>
+      <link>http://www.bensoltoff.com/test-hugo/post/can-you-win-this-hot-new-game-show/</link>
+      <pubDate>Wed, 09 Mar 2016 12:00:00 -0500</pubDate>
+      
+      <guid>http://www.bensoltoff.com/test-hugo/post/can-you-win-this-hot-new-game-show/</guid>
+      <description>&lt;p&gt;So the latest &lt;a href=&#34;http://fivethirtyeight.com/features/can-you-win-this-hot-new-game-show/&#34;&gt;Riddler puzzle on FiveThirtyEight&lt;/a&gt; goes like this:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Two players go on a hot new game show called “Higher Number Wins.” The two go into separate booths, and each presses a button, and a random number between zero and one appears on a screen. (At this point, neither knows the other’s number, but they do know the numbers are chosen from a standard uniform distribution.) They can choose to keep that first number, or to press the button again to discard the first number and get a second random number, which they must keep. Then, they come out of their booths and see the final number for each player on the wall. The lavish grand prize — a case full of gold bullion — is awarded to the player who kept the higher number. Which number is the optimal cutoff for players to discard their first number and choose another? Put another way, within which range should they choose to keep the first number, and within which range should they reject it and try their luck with a second number?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;My initial thought was to try and solve this problem via simulation. The following code will generate 100,000 rounds of play between two players. For the sake of efficiency, we will draw twice for each player now and consider how the selection of the first or second number influences the outcome of the game.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;require(dplyr)
+require(magrittr)
+require(ggplot2)
 
-&lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;Footnote example.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;^&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;</description>
+set.seed(938747)
+
+# number of rounds to play
+n_draw &amp;lt;- 100000&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p1 &amp;lt;- cbind(runif(n_draw), runif(n_draw))
+p2 &amp;lt;- cbind(runif(n_draw), runif(n_draw))
+
+head(p1)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        [,1]    [,2]
+## [1,] 0.5322 0.05078
+## [2,] 0.8662 0.60570
+## [3,] 0.1850 0.21139
+## [4,] 0.1196 0.26063
+## [5,] 0.8719 0.47793
+## [6,] 0.2358 0.38871&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(p2)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        [,1]   [,2]
+## [1,] 0.8189 0.7178
+## [2,] 0.4383 0.2433
+## [3,] 0.6300 0.5607
+## [4,] 0.7649 0.4286
+## [5,] 0.8377 0.3405
+## [6,] 0.4543 0.7741&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;naive-players&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Naive Players&lt;/h2&gt;
+&lt;p&gt;The key thing to realize is that if the players adopt the same strategy, each player will always have a 50% chance of victory. Let’s consider a very simple strategy first: no matter what happens, always keep the first number. After all, the number is generated randomly so there is no guarantee that the second number will be larger than the first number. How well does player 1 do if both players employ this strategy?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sum(p1[,1] &amp;gt; p2[,1]) / n_draw&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.4985&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;With this strategy, each player has a roughly 50% chance of winning the game. We can also see this is the same if each player always takes the second number.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sum(p1[,2] &amp;gt; p2[,2]) / n_draw&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.5031&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Okay, so this strategy is a bit naive. Why not be more sophisticated? Perhaps instead, players will only take the second number if their first number is low. An arbitrary cutpoint might be .5. That is, if either player gets a number less than .5 in the first draw, they will take whatever they get in the second draw. How does this strategy work? Here I write a short function to select the appropriate value from each round based on a specified cutpoint.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cutoff &amp;lt;- function(draw, cutpoint = .5){
+  ifelse(draw[, 1] &amp;lt; cutpoint, draw[, 2], draw[, 1])
+}
+
+sum(cutoff(p1) &amp;gt; cutoff(p2)) / n_draw&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.4994&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Because each player chose a cutpoint of .5, their probability of winning is still 50%.&lt;/p&gt;
+&lt;p&gt;This applies to all cutpoints, as long as both players select the same cutpoint.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cutpoints &amp;lt;- seq(0, 1, by = .01)
+results &amp;lt;- lapply(cutpoints,
+                  function(cutpoint) sum(cutoff(p1, cutpoint = cutpoint) &amp;gt;
+                                           cutoff(p2, cutpoint = cutpoint))) %&amp;gt;%
+  unlist
+
+results_full &amp;lt;- data_frame(cutpoint = cutpoints,
+                           win = results,
+                           win_prop = win / n_draw)
+results_full&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 101 x 3
+##    cutpoint   win win_prop
+##       &amp;lt;dbl&amp;gt; &amp;lt;int&amp;gt;    &amp;lt;dbl&amp;gt;
+##  1     0.00 49849   0.4985
+##  2     0.01 49846   0.4985
+##  3     0.02 49897   0.4990
+##  4     0.03 49896   0.4990
+##  5     0.04 49923   0.4992
+##  6     0.05 49930   0.4993
+##  7     0.06 49959   0.4996
+##  8     0.07 49965   0.4996
+##  9     0.08 50011   0.5001
+## 10     0.09 50051   0.5005
+## # ... with 91 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(results_full, aes(cutpoint, win_prop)) +
+  geom_line() +
+  scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
+  labs(x = &amp;quot;Cutpoint&amp;quot;,
+       y = &amp;quot;Player 1 Win Percentage&amp;quot;) +
+  theme_bw(base_size = 16)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-03-09-can-you-win-this-hot-new-game-show_files/figure-html/cut_plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;strategic-players&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Strategic Players&lt;/h2&gt;
+&lt;p&gt;Okay, so the issue with this analysis thus far is that this assumes the same strategies by both players. What would happen if two players do not use the same cutpoint? After all, the players cannot communicate with one another so there is no reason to expect that they would choose the same cutpoint. Let’s consider what happens if player 1 takes the second number if her first number is less than .5, but player 2 only takes the second number if his first number is less than .9.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cutoff_2 &amp;lt;- function(p1, p2, cut1 = .5, cut2 = .5){
+  sum(cutoff(p1, cutpoint = cut1) &amp;gt; cutoff(p2, cutpoint = cut2))
+}
+
+cutoff_2(p1, p2, cut1 = .5, cut2 = .9) / n_draw&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0.5713&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Hmm, now we’re on to something. Player 1 wins 57% of the rounds. But what if Player 2 knows this and adjusts his cutpoint? And Player 1, expecting this, adjusts her’s? Essentially, we want to determine the equilibrium strategy for this game.&lt;/p&gt;
+&lt;div id=&#34;analytical-solution&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Analytical Solution&lt;/h3&gt;
+&lt;p&gt;So full disclosure: I didn’t do the math on this one. md46135 did the calculus and the full explanation can be found &lt;a href=&#34;http://forumserver.twoplustwo.com/25/probability/riddler-1594214/#post49516577&#34;&gt;here&lt;/a&gt;. The full probability equation is as follows (here, player 1 is named &lt;strong&gt;hero&lt;/strong&gt; and player 2 is named &lt;strong&gt;villain&lt;/strong&gt;):&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.wolframalpha.com/input/?i=(h*v)%2F2+%2B+v*(v+-+1)+-+v%5E2%2F2+%2B+h*(v*(h+-+1)+-+h%5E2%2F2+%2B+1%2F2)+-+(v*(h%5E2+-+1))%2F2+%2B+1%2F2&#34;&gt;&lt;span class=&#34;math display&#34;&gt;\[\Pr(H = 1) = - \frac{1}{2}(h^2 - 1)v + h \left( - \frac{h^2}{2} + (h - 1)v + \frac{1}{2} \right) + \frac{hv}{2} - \frac{v^2}{2} + (v - 1) v + \frac{1}{2}\]&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This is the joint probability of victory for player 1 (or the hero) given four potential states: hero and villain both keep their first numbers, hero keeps her first and villian keeps his second, hero keeps her second and villain keeps his first, and both hero and villain keep their second numbers. In order to calculate the equilibrium strategy for both players, calculate the partial derivatives with respect to &lt;em&gt;h&lt;/em&gt; and &lt;em&gt;v&lt;/em&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.wolframalpha.com/input/?i=(h*v)%2F2+%2B+v*(v+-+1)+-+v%5E2%2F2+%2B+h*(v*(h+-+1)+-+h%5E2%2F2+%2B+1%2F2)+-+(v*(h%5E2+-+1))%2F2+%2B+1%2F2+partial+derivative+with+respect+to+h&#34;&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{\partial \Pr(H = 1)}{\partial h} = \frac{1}{2} (-3h^2 + 2hv -v + 1)\]&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.wolframalpha.com/input/?i=(h*v)%2F2+%2B+v*(v+-+1)+-+v%5E2%2F2+%2B+h*(v*(h+-+1)+-+h%5E2%2F2+%2B+1%2F2)+-+(v*(h%5E2+-+1))%2F2+%2B+1%2F2+partial+derivative+with+respect+to+v&#34;&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{\partial \Pr(H = 1)}{\partial v} = \frac{1}{2} (h^2 - h + 2v - 1)\]&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Then set each derivative equal to 0, and solve for the appropriate values of &lt;em&gt;h&lt;/em&gt; and &lt;em&gt;v&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.wolframalpha.com/input/?i=v%2F2+-+h*v+-+h*(h+-+v)+%2B+v*(h+-+1)+-+h%5E2%2F2+%2B+1%2F2%3D0,++h%2F2+%2B+v+%2B+h*(h+-+1)+-+h%5E2%2F2+-+1%2F2%3D0&#34;&gt;&lt;span class=&#34;math display&#34;&gt;\[h = \frac{\sqrt{5}}{2} - \frac{1}{2}, v = \frac{\sqrt{5}}{2} - \frac{1}{2} \]&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;simulation-solution&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Simulation Solution&lt;/h3&gt;
+&lt;p&gt;We can also use R to find this solution via &lt;a href=&#34;https://en.wikipedia.org/wiki/Monte_Carlo_method&#34;&gt;Monte Carlo simulation&lt;/a&gt;. This I solved for myself. Essentially we do a &lt;a href=&#34;https://en.wikipedia.org/wiki/Hyperparameter_optimization#Grid_search&#34;&gt;grid search&lt;/a&gt; over possible combinations of two player cutpoints and find the values which leave each player winning as close to 50% of the rounds as possible.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;cut_lite &amp;lt;- seq(0, 1, by = .025)
+
+cut_combo &amp;lt;- expand.grid(cut_lite, cut_lite) %&amp;gt;%
+  tbl_df %&amp;gt;%
+  rename(cut1 = Var1, cut2 = Var2) %&amp;gt;%
+  mutate(p1_win = apply(., 1, FUN = function(x) cutoff_2(p1, p2, cut1 = x[1], cut2 = x[2])),
+         p1_prop = p1_win / n_draw)
+cut_combo&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## # A tibble: 1,681 x 4
+##     cut1  cut2 p1_win p1_prop
+##    &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;  &amp;lt;int&amp;gt;   &amp;lt;dbl&amp;gt;
+##  1 0.000     0  49849  0.4985
+##  2 0.025     0  51071  0.5107
+##  3 0.050     0  52301  0.5230
+##  4 0.075     0  53432  0.5343
+##  5 0.100     0  54427  0.5443
+##  6 0.125     0  55381  0.5538
+##  7 0.150     0  56270  0.5627
+##  8 0.175     0  57164  0.5716
+##  9 0.200     0  57962  0.5796
+## 10 0.225     0  58657  0.5866
+## # ... with 1,671 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(cut_combo, aes(cut1, cut2, fill = p1_prop)) +
+  geom_raster() +
+  # geom_line(data = results_full, aes(cutpoint, cutpoint, fill = NULL)) +
+  geom_vline(xintercept = sqrt(5) / 2 - (1 / 2), linetype = 2, alpha = .5) +
+  geom_hline(yintercept = sqrt(5) / 2 - (1 / 2), linetype = 2, alpha = .5) +
+  geom_point(data = data_frame(x = sqrt(5) / 2 - (1 / 2),
+                               y = sqrt(5) / 2 - (1 / 2)),
+             aes(x, y, fill = NULL)) +
+  scale_fill_gradient2(midpoint = .5, labels = scales::percent) +
+  labs(x = &amp;quot;Player 1 Cutpoint&amp;quot;,
+       y = &amp;quot;Player 2 Cutpoint&amp;quot;,
+       fill = &amp;quot;Player 1 Win\nPercentage&amp;quot;) +
+  theme_bw(base_size = 16) +
+  theme(legend.position = &amp;quot;bottom&amp;quot;,
+        legend.text = element_text(size = 8))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-03-09-can-you-win-this-hot-new-game-show_files/figure-html/vary_cut_plot-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;As can be seen above, if either player adjusts his or her strategy, then one of them will be more successful in the long run. In order to maintain the balance, each player should discard their first number if it is less than approximately 0.618.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Will Someone Be Sitting In Your Seat On The Plane?</title>
+      <link>http://www.bensoltoff.com/test-hugo/post/will-someone-be-sitting-in-your-seat/</link>
+      <pubDate>Sun, 21 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.bensoltoff.com/test-hugo/post/will-someone-be-sitting-in-your-seat/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://fivethirtyeight.com/features/will-someone-be-sitting-in-your-seat-on-the-plane/&#34;&gt;This week’s Riddler puzzle on FiveThirtyEight&lt;/a&gt; features the following questions:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;There’s an airplane with 100 seats, and there are 100 ticketed passengers each with an assigned seat. They line up to board in some random order. However, the first person to board is the worst person alive, and just sits in a random seat, without even looking at his boarding pass. Each subsequent passenger sits in his or her own assigned seat if it’s empty, but sits in a random open seat if the assigned seat is occupied. What is the probability that you, the hundredth passenger to board, finds your seat unoccupied?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Coincidentally, I had seen “the lost boarding pass” problem described and solved using R on &lt;a href=&#34;http://varianceexplained.org/r/boarding-pass-simulation/&#34;&gt;David Robinson’s blog&lt;/a&gt;. In short, the answer is 50%. In asking for special extensions to the problem, I decided to evaluate if the probability remains constant across plane size. In fact, it does.&lt;/p&gt;
+&lt;p&gt;An &lt;a href=&#34;https://en.wikipedia.org/wiki/Airbus_A380&#34;&gt;Airbus A380&lt;/a&gt; has a maximum passenger capacity of 538 seats, which I rounded up to 600 for my maximum plane size. As seen below, it doesn’t matter the size of the plane - the probability of the last passenger sitting in his assigned seat is always 1/2.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-02-21-will-someone-be-sitting-in-your-seat-on-the-plane_files/figure-html/plot1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;In fact, as long as you are not one of the last passengers to board the airplane, you have an extremely high probability of sitting in your correct seat.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-02-21-will-someone-be-sitting-in-your-seat-on-the-plane_files/figure-html/plot2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;We can in fact be a bit more precise. As long as you are not one of the last 10 passengers to board the plane, regardless of the size of the plane, you have a greater than 90% chance of sitting in your correct seat.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.bensoltoff.com/test-hugo/&#34;http://www.bensoltoff.com/test-hugo/&#34;  # End your URL with a `/` trailing slash.post/2016-02-21-will-someone-be-sitting-in-your-seat-on-the-plane_files/figure-html/plot3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -1064,50 +917,6 @@ Figure 1: A fancy pie chart.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Migrate from Jekyll to Hugo</title>
-      <link>http://www.bensoltoff.com/test-hugo/post/migrate-from-jekyll/</link>
-      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.bensoltoff.com/test-hugo/post/migrate-from-jekyll/</guid>
-      <description>
-
-&lt;p&gt;Here are a few tips for migrating an existing website from Jekyll to Hugo. These tips can be applied in conjunction with following Hugo Academic&amp;rsquo;s &lt;a href=&#34;http://www.bensoltoff.com/test-hugo/post/getting-started/&#34; target=&#34;_blank&#34;&gt;getting started guide&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;move-static-content-to-static&#34;&gt;Move static content to &lt;code&gt;static&lt;/code&gt;&lt;/h2&gt;
-
-&lt;p&gt;Jekyll has a rule that any directory not starting with &lt;code&gt;_&lt;/code&gt; will be copied as-is to the &lt;code&gt;_site&lt;/code&gt; output. Hugo keeps all static content under &lt;code&gt;static&lt;/code&gt;. You should therefore move it all there.
-With Jekyll, something that looked like&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;▾ &amp;lt;root&amp;gt;/
-    ▾ images/
-        logo.png
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;should become&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;▾ &amp;lt;root&amp;gt;/
-    ▾ static/
-        ▾ images/
-            logo.png
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as &lt;code&gt;CNAME&lt;/code&gt;) to be moved to &lt;code&gt;static&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;fix-content&#34;&gt;Fix content&lt;/h2&gt;
-
-&lt;p&gt;Depending on the amount of customization that was done for each post in Jekyll, this step will require more or less effort. There are no hard and fast rules here except that &lt;code&gt;hugo server --watch&lt;/code&gt; and the Hugo Academic example site are your friends. Test your changes and fix errors as needed.&lt;/p&gt;
-
-&lt;h2 id=&#34;publish&#34;&gt;Publish&lt;/h2&gt;
-
-&lt;p&gt;The default is for Jekyll to publish the website to a &lt;code&gt;_site&lt;/code&gt; directory, whereas Hugo publishes to a &lt;code&gt;public&lt;/code&gt; directory.&lt;/p&gt;
-
-&lt;h2 id=&#34;a-practical-example&#34;&gt;A practical example&lt;/h2&gt;
-
-&lt;p&gt;Alexandre Normand migrated his website from Jekyll to Hugo in less than a day. You can see all his changes by looking at this GitHub &lt;a href=&#34;https://github.com/alexandre-normand/alexandre-normand/compare/869d69435bd2665c3fbf5b5c78d4c22759d7613a...b7f6605b1265e83b4b81495423294208cc74d610&#34; target=&#34;_blank&#34;&gt;diff&lt;/a&gt;. However, bear in mind that this example is &lt;strong&gt;not specific to the Academic theme nor does it use the latest version of Hugo&lt;/strong&gt;.&lt;/p&gt;
 </description>
     </item>
     

@@ -1,0 +1,24 @@
+---
+title: "Will Someone Be Sitting In Your Seat On The Plane?"
+author: "Benjamin Soltoff"
+summary: "Expanding on the Riddler's Problem"
+slug: will-someone-be-sitting-in-your-seat
+date: '2016-02-21'
+categories: [r]
+tags: [r]
+comments: true
+---
+
+
+
+<p><a href="http://fivethirtyeight.com/features/will-someone-be-sitting-in-your-seat-on-the-plane/">This week’s Riddler puzzle on FiveThirtyEight</a> features the following questions:</p>
+<blockquote>
+<p>There’s an airplane with 100 seats, and there are 100 ticketed passengers each with an assigned seat. They line up to board in some random order. However, the first person to board is the worst person alive, and just sits in a random seat, without even looking at his boarding pass. Each subsequent passenger sits in his or her own assigned seat if it’s empty, but sits in a random open seat if the assigned seat is occupied. What is the probability that you, the hundredth passenger to board, finds your seat unoccupied?</p>
+</blockquote>
+<p>Coincidentally, I had seen “the lost boarding pass” problem described and solved using R on <a href="http://varianceexplained.org/r/boarding-pass-simulation/">David Robinson’s blog</a>. In short, the answer is 50%. In asking for special extensions to the problem, I decided to evaluate if the probability remains constant across plane size. In fact, it does.</p>
+<p>An <a href="https://en.wikipedia.org/wiki/Airbus_A380">Airbus A380</a> has a maximum passenger capacity of 538 seats, which I rounded up to 600 for my maximum plane size. As seen below, it doesn’t matter the size of the plane - the probability of the last passenger sitting in his assigned seat is always 1/2.</p>
+<p><img src="/"http://www.bensoltoff.com/test-hugo/"  # End your URL with a `/` trailing slash.post/2016-02-21-will-someone-be-sitting-in-your-seat-on-the-plane_files/figure-html/plot1-1.png" width="672" /></p>
+<p>In fact, as long as you are not one of the last passengers to board the airplane, you have an extremely high probability of sitting in your correct seat.</p>
+<p><img src="/"http://www.bensoltoff.com/test-hugo/"  # End your URL with a `/` trailing slash.post/2016-02-21-will-someone-be-sitting-in-your-seat-on-the-plane_files/figure-html/plot2-1.png" width="672" /></p>
+<p>We can in fact be a bit more precise. As long as you are not one of the last 10 passengers to board the plane, regardless of the size of the plane, you have a greater than 90% chance of sitting in your correct seat.</p>
+<p><img src="/"http://www.bensoltoff.com/test-hugo/"  # End your URL with a `/` trailing slash.post/2016-02-21-will-someone-be-sitting-in-your-seat-on-the-plane_files/figure-html/plot3-1.png" width="672" /></p>

@@ -6,6 +6,7 @@ slug: cubs-world-series-puzzles-for-fun
 date: '2016-10-06'
 categories: [r]
 tags: [r]
+comments: true
 ---
 
 ```{r settings, cache = FALSE, echo = FALSE}
