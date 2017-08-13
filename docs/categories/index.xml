@@ -10,6 +10,15 @@
     <atom:link href="/test-hugo/categories/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Cv</title>
+      <link>http://www.bensoltoff.com/test-hugo/categories/cv/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.bensoltoff.com/test-hugo/categories/cv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>R</title>
       <link>http://www.bensoltoff.com/test-hugo/categories/r/</link>
       <pubDate>Thu, 06 Oct 2016 00:00:00 +0000</pubDate>

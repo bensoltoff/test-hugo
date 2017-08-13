@@ -169,7 +169,51 @@
     
     <url>
     
+      <loc>http://www.bensoltoff.com/test-hugo/tags/about/</loc>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>http://www.bensoltoff.com/test-hugo/categories/</loc>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>http://www.bensoltoff.com/test-hugo/cv/</loc>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>http://www.bensoltoff.com/test-hugo/categories/cv/</loc>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>http://www.bensoltoff.com/test-hugo/tags/cv/</loc>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>http://www.bensoltoff.com/test-hugo/cv/</loc>
       <priority>0</priority>
     </url>
     
@@ -248,7 +292,7 @@
     
     <url>
     
-      <loc>http://www.bensoltoff.com/test-hugo/tags/r/</loc>
+      <loc>http://www.bensoltoff.com/test-hugo/categories/r/</loc>
       <lastmod>2016-10-06T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -258,7 +302,7 @@
     
     <url>
     
-      <loc>http://www.bensoltoff.com/test-hugo/categories/r/</loc>
+      <loc>http://www.bensoltoff.com/test-hugo/tags/r/</loc>
       <lastmod>2016-10-06T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
