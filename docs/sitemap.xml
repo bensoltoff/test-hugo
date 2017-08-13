@@ -5,15 +5,6 @@
     
     <url>
     
-      <loc>http://www.bensoltoff.com/test-hugo/talk/example-talk/</loc>
-      <lastmod>2017-01-01T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    
-    <url>
-    
       <loc>http://www.bensoltoff.com/test-hugo/post/</loc>
       <lastmod>2017-01-01T00:00:00+00:00</lastmod>
     </url>
@@ -284,7 +275,7 @@
     
     <url>
     
-      <loc>http://www.bensoltoff.com/test-hugo/categories/r/</loc>
+      <loc>http://www.bensoltoff.com/test-hugo/tags/r/</loc>
       <lastmod>2016-10-06T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -294,7 +285,7 @@
     
     <url>
     
-      <loc>http://www.bensoltoff.com/test-hugo/tags/r/</loc>
+      <loc>http://www.bensoltoff.com/test-hugo/categories/r/</loc>
       <lastmod>2016-10-06T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
