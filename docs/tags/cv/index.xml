@@ -17,6 +17,37 @@
       <guid>http://www.bensoltoff.com/test-hugo/cv/</guid>
       <description>
 
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Benjamin C. Soltoff&lt;/th&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Social Sciences Division&lt;/td&gt;
+&lt;td&gt;Phone: (773) 702-9360&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;University of Chicago&lt;/td&gt;
+&lt;td&gt;Office: 249 Saieh Hall&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;5730 S. Woodlawn Ave&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;mailto:ben@bensoltoff.com&#34; target=&#34;_blank&#34;&gt;ben@bensoltoff.com&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Chicago, IL 60637&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
 &lt;h1 id=&#34;education&#34;&gt;Education&lt;/h1&gt;
 
 &lt;ul&gt;
